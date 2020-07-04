@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="先啰嗦几句话说哥们儿最近新写了个 Chrome 拓展，有一个听起来很装逼的名字，叫“前方高能”。这个拓展主要是用来在 B 站视频的下方显示一个实时弹幕密度的小图表，现在更到了 0.2 的版本，要是感兴趣的话可以去 Github 看看，如果能顺便来 Star 一发的话，就是坠吼的。 下面的内容也就是跟这个拓展有关的。如题目所说，这是我在写这个拓展踩过的一些坑。因为我自己在开发这个拓展的过程中，遇到一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome 拓展踩坑记">
+<meta property="og:url" content="http://peterwang1996.cn/2016/08/21/5a93e9e91d975a1c64aa474d/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="先啰嗦几句话说哥们儿最近新写了个 Chrome 拓展，有一个听起来很装逼的名字，叫“前方高能”。这个拓展主要是用来在 B 站视频的下方显示一个实时弹幕密度的小图表，现在更到了 0.2 的版本，要是感兴趣的话可以去 Github 看看，如果能顺便来 Star 一发的话，就是坠吼的。 下面的内容也就是跟这个拓展有关的。如题目所说，这是我在写这个拓展踩过的一些坑。因为我自己在开发这个拓展的过程中，遇到一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/4b945ffegw1f6zcujeia8j211y0lc7c7.jpg">
+<meta property="og:updated_time" content="2017-03-04T11:37:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chrome 拓展踩坑记">
+<meta name="twitter:description" content="先啰嗦几句话说哥们儿最近新写了个 Chrome 拓展，有一个听起来很装逼的名字，叫“前方高能”。这个拓展主要是用来在 B 站视频的下方显示一个实时弹幕密度的小图表，现在更到了 0.2 的版本，要是感兴趣的话可以去 Github 看看，如果能顺便来 Star 一发的话，就是坠吼的。 下面的内容也就是跟这个拓展有关的。如题目所说，这是我在写这个拓展踩过的一些坑。因为我自己在开发这个拓展的过程中，遇到一">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/4b945ffegw1f6zcujeia8j211y0lc7c7.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2016/08/21/5a93e9e91d975a1c64aa474d/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Chrome 拓展踩坑记 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2016/08/21/5a93e9e91d975a1c64aa474d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Chrome 拓展踩坑记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-21 23:05:11" itemprop="dateCreated datePublished" datetime="2016-08-21T23:05:11+08:00">2016-08-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-03-04 19:37:16" itemprop="dateModified" datetime="2017-03-04T19:37:16+08:00">2017-03-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="先啰嗦几句"><a href="#先啰嗦几句" class="headerlink" title="先啰嗦几句"></a>先啰嗦几句</h2><p>话说哥们儿最近新写了个 Chrome 拓展，有一个听起来很装逼的名字，叫“前方高能”。这个拓展主要是用来在 B 站视频的下方显示一个实时弹幕密度的小图表，现在更到了 0.2 的版本，要是感兴趣的话可以<a href="https://github.com/peterwang1996/QianFangGaoNeng/" target="_blank" rel="noopener">去 Github 看看</a>，如果能顺便来 Star 一发的话，就是坠吼的。</p>
+<p>下面的内容也就是跟这个拓展有关的。如题目所说，这是我在写这个拓展踩过的一些坑。因为我自己在开发这个拓展的过程中，遇到一些问题的时候几乎找不到中文资料参考，甚至有时候连英文资料都找不到。所以我觉得我确实有写一点东西的必要了。我这里使用的 Chrome 浏览器版本是 52.0.2743.116。</p>
+<p>（顺便一提，Chrome 拓展上架要给谷歌爸爸交 5 刀的保护费，虽然钱确实不多，但是蛋疼在需要用信用卡交，还特么不能用国内的。然而本人一介穷屌哪来的信用卡，求老司机支招如何有办法不用信用卡搞这个。）</p>
+<a id="more"></a>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>说起开发这个拓展的想法，无他，只是前两天突然脑洞一开，就自己想“如果能把 B 站的弹幕密度实时统计出来，应该会很有趣”。有了这个想法，自然就开始行动了。只不过这玩意儿刚开始还不是拓展，最初甚至连所有的功能都是写在一个函数里面的，然后就用了一个本地特别原始的小服务器挂起来，用 AddJS 注入到页面里，然后用了大约两个小时写成了一个雏形。当时因为没有双向同步的进度条，图表都是和视频进度条同宽的。</p>
+<p><img src="https://ws3.sinaimg.cn/large/4b945ffegw1f6zcujeia8j211y0lc7c7.jpg" alt="“前方高能”最初的样子"></p>
+<p>写完了之后我自己去玩了一下，发现还真挺好玩，于是便萌生了做一个拓展的想法，让更多的人能体验到这么好玩的东西。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>早就听说 Chrome 的拓展开发就是用的咱们最熟悉的 HTML + CSS + JavaScript 三大件，这给了我极大的信心。于是我立马就去 Bing 找文档，找到了一篇貌似是<a href="http://open.chrome.360.cn/extension_dev/overview.html" target="_blank" rel="noopener">360 平台的拓展开发文档</a>的东西。毕竟 360 浏览器也是用 Webkit 内核的东西，而且看地下说明是 360 工程师直接翻译了 Chromium 的文档挂在上面，于是本着不折腾自己的原则，我就姑且拿这个作为我接下来开发的参考。</p>
+<p>首先看了前面一小段，我大概了解到了 Chrome 拓展的文件分布。文档原文是这样说的：</p>
+<blockquote>
+<p>每个应用（扩展）都应该包含下面的文件：</p>
+<ul>
+<li>一个manifest文件</li>
+<li>一个或多个html文件（除非这个应用是一个皮肤）</li>
+<li>可选的一个或多个javascript文件</li>
+<li>可选的任何需要的其他文件，例如图片</li>
+</ul>
+</blockquote>
+<p>不难看出，chrome 拓展的文件结构应该和普通的网页以及 Web App 别无二致，只是多了一个名叫 <code>manifest.json</code> 的文件，相当于对整个 Web App 的一个配置。这里在官方文档里面写得很详细，我在这里就不展开讲了。直到 0.2 版，我这个拓展的文件目录是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">chrome</span><br><span class="line">│  bg.html</span><br><span class="line">│  icon_128.png</span><br><span class="line">│  icon_19.png</span><br><span class="line">│  manifest.json</span><br><span class="line">│  popup.html</span><br><span class="line">│</span><br><span class="line">├─js</span><br><span class="line">│  ├─bg</span><br><span class="line">│  │      XOrigin.js</span><br><span class="line">│  │</span><br><span class="line">│  ├─bilibili</span><br><span class="line">│  │      constVar.js</span><br><span class="line">│  │      mainFunc.js</span><br><span class="line">│  │</span><br><span class="line">│  └─common</span><br><span class="line">│          commonConstVar.js</span><br><span class="line">│          commonFunc.js</span><br><span class="line">│</span><br><span class="line">└─third-party</span><br><span class="line">    └─js</span><br><span class="line">            echarts.custom.js</span><br><span class="line">            zepto.min.js</span><br></pre></td></tr></table></figure>
+<p>如你所见，虽然这个功能并不算复杂，但是我还是拆分出了不少的文件，并且分门别类把它们放好，我甚至把我用到所有不变的常量都放在了单独的文件里。这样做的好处在于，如果我以后要添加针对更多视频网站的支持，以及对视频网站 API 的变化做出的适应性变更，以及如果我以后要将这些常量做成用户可配置的选项，这样及时且且充分的模块化会让我在很大程度上少做很多无用的工作，从而能够比较从容地面对变化。</p>
+<p>有了开始的配置文件，接下来我们就可以正式地开工了。因为之前我已经写了一个雏形，所以实现最基本的功能（也就是在播放器的下面显示一个图表）并不困难，直接将写好的脚本注入相应的页面即可，仔细看看文档的话应该很容易实现。不过还是有几点值得一说。</p>
+<h3 id="获取弹幕数据"><a href="#获取弹幕数据" class="headerlink" title="获取弹幕数据"></a>获取弹幕数据</h3><p>因为之前研读过<a href="https://github.com/zacyu/bilibili-helper" target="_blank" rel="noopener">哔哩哔哩助手</a>的代码，大概知道每个视频的弹幕大致是以一个 <code>cid</code> 来标记，然后通过一个 <code>http://comment.bilibili.com/{$cid}.xml</code> 的地址来获取的。现在关键是如何来获取这样的一个 <code>cid</code> 。看了几种播放器页面的源码以后我发现，不同的播放器对于 cid 的处理都是作为一个参数传进播放器的。但是 B 站各种播放器传参方式不尽相同。但是我却发现了一个共同之处，在传参的时候必然会出现一个 <code>cid=23333&amp;aid=33333</code> 这样的字符串。所以我自然想到了使用正则表达式来摆平这件事，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项目中用到了Zepto，以下会出现 jQuery 的写法，下同</span></span><br><span class="line">cid = $(<span class="string">'body'</span>).html().match(<span class="regexp">/cid=\d*/</span>)[<span class="number">0</span>].slice(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<p>在写出这个以后，我本因自己奇大无比的脑洞而折服。然而我眉头一皱，发现事情貌似并没有想象中那么简单。万一哪个 UP 主某一天闲得蛋疼，在个人说明里面写一个诸如 <code>cid=23333</code> 之类的东西，那我这种写法必然会爆炸。在思考了三十秒种之后，我又换了一种写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// $player 是播放器的 jQuery 对象</span></span><br><span class="line">cid = $player.parent().html().match(<span class="regexp">/cid=\d*/</span>)[<span class="number">0</span>].slice(<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<p>这样的话，即便以后 B 站以后换 HTML5 播放器，而且有人在视频说明或评论里捣乱，我觉得在获取 cid 方面，我也不用再重新适配了。</p>
+<blockquote>
+<p><strong>更新</strong>：后来 B 站新推出了“番剧”页面，于是通过这样的手段来获取 <code>cid</code> 便显得困难。但后来经过研究，发现 B 站其实有一个存在一个接口（<code>http://api.bilibili.com/view</code>），可以通过视频的 AV 号和可以用来获取视频的信息，其中就包括视频的 <code>cid</code> ，于是这样我们就不需要像上面那样提取 <code>cid</code> 了，直接提取到 AV 号（普通页面通过解析页面的 <code>url</code>，番剧页面通过解析 <code>url</code> 得到番剧编号，然后用另一个接口（<code>http://bangumi.bilibili.com/web_api/episode/</code>）获取到 AV 号之后再获取 <code>cid</code>），这样的话，在番剧页面跳集不刷新页面的场景，我们也只需要绑定 <code>readystatechange</code> 事件，重新读一遍 <code>url</code> 再解析渲染就可以了。</p>
+</blockquote>
+<h3 id="解析弹幕数据"><a href="#解析弹幕数据" class="headerlink" title="解析弹幕数据"></a>解析弹幕数据</h3><p>由于弹幕是很规矩的 XML 格式，所以在解析弹幕方面并没有遇到太大困难。只是在测试的时候发现了一点差点被遗漏的东西。</p>
+<p>当我把插件的基础功能完成之后，就开始找各种视频来测试。在<a href="http://www.bilibili.com/video/av1438404/" target="_blank" rel="noopener">这样一个视频</a>中却发现了一个奇怪的问题，那就是图表有数据的部分只有前面很小一部分，而且时间轴显示了一个比视频长度长得多的时间（图表 x 轴的长度是）。把处理过的数据打进控制台，也是出现了和图表一样的问题。于是我就下载了弹幕的 XML 文件进行查看，发现有这么一行……</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"100000000,8,25,16777215,1408723989,2,e6f18f01,574173329"</span>&gt;</span>trace("test"); <span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>作为对比，这里放几条普通的弹幕数据：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"2091.6560058594,1,25,9487136,1469703784,0,49d36669,2162939419"</span>&gt;</span>发条弹幕证明我还活着<span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"2738.2260742188,1,25,9487136,1469705065,0,49d36669,2163062241"</span>&gt;</span>存活<span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"3190.1789550781,1,25,9487136,1469705535,0,49d36669,2163105603"</span>&gt;</span>存活<span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"1554.5989990234,1,25,15138834,1469728356,0,ea71db37,2165167499"</span>&gt;</span>国际天团组合<span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"2418.1818847656,1,25,16777215,1469764133,0,9e4f43c4,2166449009"</span>&gt;</span>史密斯麻辣隔壁<span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">d</span> <span class="attr">p</span>=<span class="string">"2551.6499023438,1,25,16777215,1469764307,0,9e4f43c4,2166464105"</span>&gt;</span>居然是原曲不使用<span class="tag">&lt;/<span class="name">d</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>原来是一条在“第 100000000 秒”的时候发射的代码弹幕。</p>
+<p>这样我们就可以很容易地解决这个问题了。只要想办法把特殊的弹幕过滤掉即可。并且我发现每个弹幕的 <code>p</code> 属性的第五个值恰好标注的是弹幕类型，那么我们就只需要统计普通弹幕就可以了。</p>
+<blockquote>
+<p><strong>更新</strong>：后来我发现了事实上是可以通过直接发送请求的方式来发送一个任意时间点的弹幕，于是在接下来的新版中计划改进图表的加载策略，即播放器准备就绪时先读取到整个视频的长度，然后结合读取到的弹幕数据进行整理。</p>
+</blockquote>
+<h3 id="进度条双向绑定"><a href="#进度条双向绑定" class="headerlink" title="进度条双向绑定"></a>进度条双向绑定</h3><p>本来在了解了 B 站播放器的 API 之后，结合 echarts 的点击事件监听，做出点击图表空降是个很容易的事情。但是我想做个更骚的功能，就是在图标上页搞一个跟播放器同步的进度指示，也就是所谓的双向绑定。刚开始我的方案是在图表上画一条垂直于横轴的标线，然后每隔一小段时间就更新一次进度条数据，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timelineMove = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// getPos 函数用来获取播放器进度条当前的位置</span></span><br><span class="line">        <span class="keyword">var</span> nowTime = <span class="built_in">Math</span>.floor(player.getPos());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="comment">// 防止因为播放器尚未加载完毕导致的 error 输出</span></span><br><span class="line">        <span class="keyword">if</span> ((e + <span class="string">''</span>).indexOf(<span class="string">'is not a function'</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Player not ready yet'</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.error(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    chartOption.series.markLine.data[<span class="number">1</span>].label.normal.formatter = timeNumToStr(nowTime);</span><br><span class="line">    chartOption.series.markLine.data[<span class="number">1</span>].xAxis = <span class="built_in">Math</span>.floor(nowTime / step);</span><br><span class="line">    myChart.setOption(chartOption);</span><br><span class="line">&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>但是这样会出现一个问题。由于图表数据一直在频繁地刷新，导致图表无法点击，从而使本来好好的空降功能变成了废物。出现问题就必须想办法解决。然后我发现事实上这个表最多只需要每秒更新一次，于是我就改变了方案，就是只有当侦测到时间轴的整秒变化才刷新图表，这样整个情况就会好很多，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> timelineMove = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> nowTime = <span class="built_in">Math</span>.floor(player.getPos());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((e + <span class="string">''</span>).indexOf(<span class="string">'is not a function'</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Player not ready yet'</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.error(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (nowTime !== lastTime) &#123;</span><br><span class="line">        chartOption.series.markLine.data[<span class="number">1</span>].label.normal.formatter = timeNumToStr(nowTime);</span><br><span class="line">        chartOption.series.markLine.data[<span class="number">1</span>].xAxis = <span class="built_in">Math</span>.floor(nowTime / step);</span><br><span class="line">        myChart.setOption(chartOption);</span><br><span class="line">        lastTime = nowTime;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="对-iframe-播放器的适配"><a href="#对-iframe-播放器的适配" class="headerlink" title="对 iframe 播放器的适配"></a>对 <code>iframe</code> 播放器的适配</h3><p>正当我得意洋洋，准备去传说中的 <a href="http://www.bilibili.com/video/av10492/" target="_blank" rel="noopener">av10492</a> 遛一遛我的插件的时候，意外发生了……</p>
+<blockquote>
+<p><strong>更新</strong>：这里本来的内容是想写部分视频播放器镶嵌在与父页面不同域的<code>iframe</code>中，我是如何用 chrome 插件的 background page 来实现跨域 <code>iframe</code> 的数据传输。但是在最新版的 B 站视频页面中， B 站启用了最新的 HTML5 播放器，革掉了几乎所有 <code>iframe</code> 播放器（除掉极个别使用第三方播放器的视频）的命，并且显然 chrome 浏览器都是可以完美兼容 HTML5 播放器的。所以在新版的“前方高能”插件中，我并没有保留对这方面的兼容，故此部分内容在此也就不再做赘述。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/29/5a93e9e91d975a1c64aa474c/" rel="next" title="这个博客是如何被我弄出来的">
+                <i class="fa fa-chevron-left"></i> 这个博客是如何被我弄出来的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/23/5a93e9e91d975a1c64aa474e/" rel="prev" title="我看微信“小程序”">
+                我看微信“小程序” <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先啰嗦几句"><span class="nav-number">1.</span> <span class="nav-text">先啰嗦几句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取弹幕数据"><span class="nav-number">3.1.</span> <span class="nav-text">获取弹幕数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析弹幕数据"><span class="nav-number">3.2.</span> <span class="nav-text">解析弹幕数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进度条双向绑定"><span class="nav-number">3.3.</span> <span class="nav-text">进度条双向绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对-iframe-播放器的适配"><span class="nav-number">3.4.</span> <span class="nav-text">对 iframe 播放器的适配</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

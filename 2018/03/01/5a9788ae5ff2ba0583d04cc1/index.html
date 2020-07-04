@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="不知各位是否还记得 （喂这破博客好像根本就被有多少人看吧(╯‵□′)╯︵┻━┻） ，当年在我还没开始准备考研的时候，我开发了一个名叫“前方高能”的 Chrome 插件，当年在博客里写 1.0 的开发报告的时候，还在为没办法交 $5 的保护费而为难，后来才发现万能的某宝能办理这种业务，于是乎我的这个插件也终于是成功上架 Chrome 应用商店，到目前为止，插件上架也有一年多了，已经有也有了几十个用户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前方高能 2.0 中期开发报告">
+<meta property="og:url" content="http://peterwang1996.cn/2018/03/01/5a9788ae5ff2ba0583d04cc1/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="不知各位是否还记得 （喂这破博客好像根本就被有多少人看吧(╯‵□′)╯︵┻━┻） ，当年在我还没开始准备考研的时候，我开发了一个名叫“前方高能”的 Chrome 插件，当年在博客里写 1.0 的开发报告的时候，还在为没办法交 $5 的保护费而为难，后来才发现万能的某宝能办理这种业务，于是乎我的这个插件也终于是成功上架 Chrome 应用商店，到目前为止，插件上架也有一年多了，已经有也有了几十个用户">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxkhnthqcj20ql043dfx.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxkxdvnwpj20iv0cdqek.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxl2d5zt4j20iw0c919a.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxlk97rpyj20it0e1ngn.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxnlqyvcaj20ur0hmq9q.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxnqquszwg20s207rtid.gif">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxofijs8sg20s2095dkp.gif">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxok0ngl9g20jc083x6p.gif">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1fp3k3cof8hg20w504uqry.gif">
+<meta property="og:updated_time" content="2018-03-07T14:26:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前方高能 2.0 中期开发报告">
+<meta name="twitter:description" content="不知各位是否还记得 （喂这破博客好像根本就被有多少人看吧(╯‵□′)╯︵┻━┻） ，当年在我还没开始准备考研的时候，我开发了一个名叫“前方高能”的 Chrome 插件，当年在博客里写 1.0 的开发报告的时候，还在为没办法交 $5 的保护费而为难，后来才发现万能的某宝能办理这种业务，于是乎我的这个插件也终于是成功上架 Chrome 应用商店，到目前为止，插件上架也有一年多了，已经有也有了几十个用户">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1foxkhnthqcj20ql043dfx.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2018/03/01/5a9788ae5ff2ba0583d04cc1/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>前方高能 2.0 中期开发报告 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2018/03/01/5a9788ae5ff2ba0583d04cc1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前方高能 2.0 中期开发报告
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-01 22:59:30" itemprop="dateCreated datePublished" datetime="2018-03-01T22:59:30+08:00">2018-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-07 22:26:45" itemprop="dateModified" datetime="2018-03-07T22:26:45+08:00">2018-03-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不知各位是否还记得 <del>（喂这破博客好像根本就被有多少人看吧(╯‵□′)╯︵┻━┻）</del> ，当年在我还没开始准备考研的时候，我开发了一个名叫“前方高能”的 Chrome 插件，当年<a href="https://peterwang1996.cn/chrome-extension-diary/">在博客里写 1.0 的开发报告</a>的时候，还在为没办法交 $5 的保护费而为难，后来才发现万能的某宝能办理这种业务，于是乎我的这个插件也终于是成功<a href="https://chrome.google.com/webstore/detail/%E5%89%8D%E6%96%B9%E9%AB%98%E8%83%BD/aifplikdlpjakalndboebgcaichdeoeo" target="_blank" rel="noopener">上架 Chrome 应用商店</a>，到目前为止，插件上架也有一年多了，已经有也有了几十个用户，<a href="https://github.com/peterwang1996/QianFangGaoNeng" target="_blank" rel="noopener">GitHub 的项目页面</a>也有了几十个 Star，虽算不上多，但个人认为这还是对自己工作的一份肯定，可喜可贺。</p>
+<p>此外，在我将插件的 1.0 版本上架到 Chrome 商店之后，似乎有一些“竞品”也推出了类似的功能。比如B站官方在给UP主预览自己稿件的页面里，也推出了一个类似的弹幕密度图表控件，又比如一个名叫 <a href="https://github.com/xmcp/pakku.js" target="_blank" rel="noopener">pakku.js</a> 的 Chrome 插件，它的主要功能是过滤 B 站短时间内重复的大量弹幕，在<a href="https://github.com/xmcp/pakku.js/commit/66feecc17dfd66211bf22d89b7cb4e509191e3d6" target="_blank" rel="noopener">去年十月份更新的一个版本中</a>也提供了这样一个弹幕密度图表的功能（这些稍后再详细说）。而且在这期间，B站的页面和接口确实也发生了一些的变化，导致现有的版本出现了一些的问题，前端开发的技术栈在也出现了大规模的更新。基于以上这些原因，我决定启动一个全新的“前方高能 2.0”的开发计划。开发的过程中产生了很多想法，也遇到了一些问题。所以在这里我来把这些想法片断，连带着 1.0 版本的一些想法稍微整理一下，输出成这样的一篇文字，和大家分享。</p>
+<a id="more"></a>
+<h2 id="想法复盘"><a href="#想法复盘" class="headerlink" title="想法复盘"></a>想法复盘</h2><p>当初在开发这个插件的雏形的时候，我的想法其实非常简单。就是对于一个视频，有些部分会有十分大量的弹幕出现，而有些部分的弹幕数量就非常少。而我们都知道，作为弹幕网站的用户，发送弹幕的最重要的目的就是“吐槽”，换句话来说，就是向视频的其他观看者表达自己的想法和情绪。那么也不难想到，<strong>如果一个视频的某个部分的弹幕明显多于其他部分，也就说明这个部分相比其他部分会更好地激起观众情绪的共鸣（或者叫“吐槽欲”），那么我们也自然可以认为，这个视频的这个部分比其他部分要精彩一些。</strong> 事实上，根据弹幕多少来预测视频的精彩部分或者说是“爆点”的手段是十分可靠的。下面就拿 <em><a href="https://www.bilibili.com/video/av4606803/" target="_blank" rel="noopener">主播真会玩鬼畜篇01：我是全英雄联盟最骚的骚猪!</a></em> 这个堪称电竞鬼畜鼻祖的视频来作为举例，它的整个弹幕密度分布图表在前方高能 1.0 中的显示是这样的：</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxkhnthqcj20ql043dfx.jpg" alt="“骚猪”视频的弹幕分布"></p>
+<p>显然，我们可以发现在这个视频中，有两个特别明显的弹幕高潮点，在图上我已经分别用①和②标出。那么这两个部分的内容和弹幕怎样的呢？</p>
+<p>点①是在调侃 PDD 直播的时候想抽烟，结果把点燃的部分送到了嘴里，歌词是“我把烟掉在地上，捡起来抽反了，把™燃着的抽到嘴巴里去了”，这时弹幕在大量地刷“先有骚猪后有天，反向抽烟日神仙”：</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxkxdvnwpj20iv0cdqek.jpg" alt="反向抽烟"></p>
+<p>图②是 PDD 在 YY 上跟别人连麦的时候，假装女生说话，歌词是“小轩在不在，小轩在不在，对对对对对对我是娇妹”，这是弹幕也在疯狂地刷这句歌词：</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxl2d5zt4j20iw0c919a.jpg" alt="小轩在不在"></p>
+<p>尽管这个视频整体的笑点都十分足，但是<strong>这两个“梗”确实在这个视频中取到了举足轻重的作用</strong>。这两个梗在后续的传播中也是最常被人提起的。至少在我身边看过这个视频的朋友，他们可能想不起来“孙亚龙的玩具车队”或者“再这么说要哭了哦”这些梗，但他们绝对能在我提起“反向抽烟”和“娇妹”的时候想起 PDD 和这个视频。</p>
+<p>有时<strong>在一个视频的某个特定时间点刷某种弹幕似乎已经成为了观众一种约定俗成的习惯</strong>，例如你在B站欣赏与 <em>μ</em>‘s 的 <em>Snow Halation</em> 这首歌有关的视频的时候，总是会在第三段副歌看到大家大量跟刷 <span class="snow"><a href="https://zh.moegirl.org/zh-hans/%E5%A6%82%E6%9E%9C%E5%A5%87%E8%BF%B9%E6%9C%89%E9%A2%9C%E8%89%B2%EF%BC%8C%E9%82%A3%E4%B8%80%E5%AE%9A%E6%98%AF%E6%A9%99%E8%89%B2" target="_blank" rel="noopener">如果奇迹有颜色，那一定是橙色</a> </span>这样的弹幕：</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxlk97rpyj20it0e1ngn.jpg" alt=""></p>
+<p>其最初的原因也是在原先这首歌 PV 中的这个部分有一个非常打动人的橙色灯光切换的场景。事实上，以上的这个例子只是冰山一角，类似这样的行为在B站的弹幕中屡见不鲜，已经俨然成为了B站弹幕文化的一部分。</p>
+<p>基于以上的例子，我们可以的出一个结论：在一个视频中，<strong>弹幕越密集的区域，代表发送弹幕的观众对这个部分的共鸣越大，从侧面也可以说明这个部分在整个视频中比较精彩，值得用户去仔细欣赏</strong>。那么，我们要如何利用这样的规律，来提高用户使用网站时的体验呢？</p>
+<p>在用户使用B站欣赏视频的过程中，经常会遇到这样的情况：部分视频的长度十分长，一个视频动辄长度就是几个小时（对网络直播节目的录播甚至一天就会产生数个小时的内容），很多用户并不想或者没有时间去看这么长时间的视频，<strong>他们只想看其中最有意思的部分</strong>。但是对于视频这个载体来说，我们很难去对它做（类似于对文字的）快速预览。于是用户就需要这样一个工具来告诉他们，视频最精彩的部分在哪里，以实现快速的跳转和观看。这个名叫“前方高能”的插件就是试图来解决这样的问题的。<strong>它把整个视频的“弹幕密度”统计出来，绘制成一个直观的折线图。这样用户就可以快速地定位到视频的精彩时刻进行观看</strong>。同时实现一些其他零碎的功能和目的，下面会陆续提到。</p>
+<h2 id="竞品分析"><a href="#竞品分析" class="headerlink" title="竞品分析"></a>竞品分析</h2><p>刚刚我大致说明了我当初设计和开发这个插件的一些最初的目的和想法。这个模块来大致说明一下目前这个 1.0 版本的情况，并且对上面谈到的两款“竞品”进行一些分析，试图从中挖掘一些可以改进的点。下面晒一张三个竞品的合照：</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxnlqyvcaj20ur0hmq9q.jpg" alt="竞品合照"></p>
+<h3 id="前方高能-1-0"><a href="#前方高能-1-0" class="headerlink" title="前方高能 1.0"></a>前方高能 1.0</h3><p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxnqquszwg20s207rtid.gif" alt="前方高能1.0"></p>
+<p>没错，这里我要分析的第一个“竞品”就是目前已经 release 的前方高能 1.0 版本。因为这本身就是一个想法驱动的实践过程，所以最后对于前面提到的“帮助用户快速地发现视频的精彩部分并快速跳转观看”的用户体验目标贯彻得比较彻底。在视频加载时，这个插件就会自动读取视频的弹幕信息，并绘制出一个如上图所示的折线图。并且图表和视频播放器的进度条形成了双向互动。用户点击折线图上的点时，视频就会跳转到比对应的时间点稍微提前的时间点（这个之后会详细展开）；图表上也会有一个标尺实时显示进度条的位置。在图表并没有和进度条的宽度对齐的时候，这样的设计极大地方便用户在图表上对应到视频正在播放的部分，免去了额外的查看和思考的过程。</p>
+<p>之前提到过，用户在点击图表上对应的时间点之后，视频会跳转到图表对应时间点稍微提前一些的位置。之所以这么做，是考虑到用户体验的一个小细节：一般弹幕的峰值点都会出现在精彩部分（比如某个角色的一句经典台词）正好开始甚至延后一点的部分。如果用户直接“空降”到该时间点观看，很有可能会因为缺少上下文而无法理解精彩部分的内容，甚至有可能直接错过这个精彩部分。这就使用户不得不手动将进度条拖回一段时间来查看上下文。这样的体验实在不能算是流畅。为了尽量解决这个问题，我将用户点击图表时跳转的时间点稍微提前了一些。但是对于提前的量，确实是一个很难把握的事情。在前方高能 1.0 中，这个提前的时间是固定的 5s ；在目前正在开发的 2.0 版本中，我把它作为一个可以配置的选项写入了“设置”面板中；我甚至思考过根据视频的总时长来确定这个提前量（比如视频总时长的 1%）。但是我思来想去，觉得这些策略似乎都过于死板。如果插件能根据弹幕里已有的信息（如“前方高能”、“空降成功”这样的关键字）来自动侦测对应的空降点，相信效果会好得多。</p>
+<p>另外，这个插件虽然基本上实现了之前提到的那个用户体验目标，但是很显然，我们可以用这样一个图表做更多的事情。例如，B站在<a href="https://www.bilibili.com/read/cv107973/" target="_blank" rel="noopener">阳光弹幕计划第九弹</a>中提出了“弹幕点赞”功能。如果我们能获得相关的数据，将被点赞较多的弹幕通过 Icon 的方式体现在图表上（类似评论区的“热门评论”功能），一方面方便用户快速定位和查看，另一方面也是通过这种方式对优质弹幕发送者提供一些“小小的奖励”，以此来促进弹幕质量的提高。</p>
+<p>还有一些小问题，例如我目前发现的有，“弹幕密度”这个 term 对一般用户来说还是比较生涩，表述方式改成“平均每秒 x 条弹幕”会更好些；整体使用了 echarts 的默认 UI （并不是说 echarts 的 UI 不好，百度的 dalao 看到了别打我），定制化和美观程度还需要加强，等等。</p>
+<h3 id="官方弹幕分布查看器"><a href="#官方弹幕分布查看器" class="headerlink" title="官方弹幕分布查看器"></a>官方弹幕分布查看器</h3><p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxofijs8sg20s2095dkp.gif" alt="官方"></p>
+<p>这个是 Bilibili 官方提供给 UP 主的一个弹幕分布预览的功能。我推测B站的交互设计师设计这个功能，可能是为了帮助 UP 主了解他们的观众更喜欢视频的哪些部分。它在使用上与前方高能 1.0 高度相似：图表上正在播放部分对应的 bar 会被高亮显示，点击 bar 时视频也会自动跳转到其对应时间提前 2s 的时间点。在体验上唯一的不同只是将折线图换成了条形图，每个 bar 代表十秒钟时长内弹幕的数量。关于图表显示策略的问题，接下来的部分会详细讨论，这里不做赘述。</p>
+<h3 id="pakku-js"><a href="#pakku-js" class="headerlink" title="pakku.js"></a>pakku.js</h3><p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1foxok0ngl9g20jc083x6p.gif" alt="pakkujs"></p>
+<p>其实这个插件我一直也有在关注，所以这个功能刚出不久我就发现了。可以说这个插件提供了一种非常不一样的弹幕图表实现方式。在经过一番体验之后，我发现这样的实现确实非常有效地解决了一些问题，但同时也存在一些局限。</p>
+<p>具体来说，pakku.js 用一个 <code>canvas</code> 实现了一个非常轻量级的、不“麻烦”的弹幕图表。首先，它只会在用户把鼠标指到进度条上面的时候才会显示打造了一种<strong>“需要时才出现”</strong>的体验，而不会向前两者的解决方案一样，始终占据播放器下方很大一块空间；其次，它直接显示在视频画布中的区域，也就是画面预览图的上方，这样用户在看视频的过程中，完全<strong>不需要拖动页面</strong>，就能方便地看到图表，而在前两者的解决方案中，如果用户使用的屏幕大小有限（比如我自己的笔记本，刚好能容纳非全屏状态下的播放器），用户只有来回拖动页面滚动条，才能实现播放器和弹幕图表的切换，这样就十分麻烦了，而 pakku.js 的设计却恰到好处地规避了这个问题；第三，这个<strong>图表的横轴与视频的进度条在宽度上完全重合</strong>，并且鼠标在进度条上移动的时候，画面上有一条黑线指示当前鼠标所指的位置，而前两种方案尽管都在用自己的方式（标线和高亮）解决映射问题，但是都没有这种方式来得直观。</p>
+<p>但是，正如前面所说，这种方案在带来了许多方便的同时，也产生了很多的局限。首先，图表只会在用户将鼠标放在进度条才出现，用户一旦把鼠标放在进度条上拿开，图表就消失了，这样的设计使得图表的<strong>操作接触点变得非常少</strong>（用户对图表可以产生的操作非常有限），从而也就很难再给图表扩展新的功能；其次，图表在显示的时候会<strong>遮挡视频画面</strong>，这对于“寻找高能点”这个目标的实现来说并不是太大的阻碍，可是，对于部分需要一边浏览视频一边查看图表的用户来说（比如边看视频边对自己作品进行反思的UP主），这样的设计就会是一种非常大的麻烦；第三，虽然图表中标识出了用户鼠标放在进度条上对应的时间点，但是对<strong>于视频正在播放的时间点并没有明确的标识</strong>，而至于图表与进度条等宽可能带来的问题，会在接下来的内容中详细地讨论，此处不再赘述。</p>
+<p>所以，尽管这套方案有它的独到之处，但是因为前方高能 2.0 需要承担更多的交互功能，所以不采用这套方案。不过我们仍然能从这套方案中发现可取的东西为我们所用。比如，在前方高能 2.0 版本中，会考虑加入鼠标 hover 进度条时在图表上标注对应时间点及其弹幕内容的功能。我甚至设想过将 pakku.js 的功能“挪为己用”，具体做法是先用一些办法找出视频的“高能点”（比如用一些数学方法找出图表的若干个波峰），然后把 pakku.js 合并弹幕的算法拿过来找出这些“高能点”中代表性的弹幕，然后在图表上用 icon 标识出来，这样用户通过查看图表就可以快速了解整个视频的精彩内容，这也恰好解决了上文提到的“视频内容难以快速预览”的痛点（这里暂时不考虑可能）。</p>
+<h3 id="关于图表的显示策略"><a href="#关于图表的显示策略" class="headerlink" title="关于图表的显示策略"></a>关于图表的显示策略</h3><p>以上的内容分别讨论了三个竞品的实现和它们各自的特色和局限。但是上面的内容中都略过了图表的显示策略这个问题，因为如果我们把这三个解决方案的图表显示策略放在一起来看的话，再结合前面提到的一些东西，我们可以发现更多有趣的点。所以我就这个问题列了下面这样一个表：</p>
+<table>
+<thead>
+<tr>
+<th>解决方案</th>
+<th>图表类型</th>
+<th>图表宽度</th>
+<th>数据 Sampling 方式<br>及对 overflow的处理</th>
+<th>是否会因为超出显示范围<br>忽略部分数据点</th>
+<th>用户是否始终能<br>看到整个图表</th>
+<th>纵轴高度的处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>前方高能 1.0</strong></td>
+<td>折线图</td>
+<td>与页面等宽</td>
+<td>视频小于 50s 时每秒为一个数据点<br>大于 50s 时取50个数据点<br>始终基于图表的宽度绘图</td>
+<td>是</td>
+<td>是</td>
+<td>相对整个图表</td>
+</tr>
+<tr>
+<td><strong>官方查看器</strong></td>
+<td>条形图</td>
+<td>与页面等宽</td>
+<td>10s 为一个 bar（数据点）<br>视频长度过长时先尝试缩窄 bar<br>若仍无法容纳，使用 scrollbar 导航</td>
+<td>否</td>
+<td>否，有时需要 scrollbar 辅助</td>
+<td>相对整个图表</td>
+</tr>
+<tr>
+<td><strong>pakku.js</strong></td>
+<td>折线图</td>
+<td>与进度条等宽</td>
+<td>始终以进度条的宽度为基准作图</td>
+<td>是</td>
+<td>是</td>
+<td>绝对高度<br>（每条弹幕约产生 4px 高度）</td>
+</tr>
+</tbody>
+</table>
+<p>首先说图表类型的问题。前方高能 1.0 和 pakku.js 都是采用的折线图，理论上来说，因为横轴是时间轴，使用折线图会<strong>更加符合一般的图表呈现逻辑和用户认知</strong>。而官方查看器却使用了条形图，这一开始确实让人觉得非常难以理解，但是在我仔细剖析过这个图表的构成之后，发现这个官方查看器完全是由一般的 DOM 元素构成的，就算是构成整个图表最重要的 bar 也是用 <code>div</code> 元素做成圆角，然后用 JavaScript 赋予高度而形成了整个图表。作为对比，前方高能 1.0（ECharts 图表组件） 和 pakku.js（<code>canvas</code> 原生实现折线图） 都使用了 <code>canvas</code> 来实现图表，做出折线图就会容易得多，但是<strong>对性能的损耗和资源的加载就会多一些</strong>（比如正在开发的前方高能 2.0 就因为使用 ECharts 的缘故，遇到了非常棘手的性能问题）。这也许是B站在权衡了以上各种因素之后一个妥协的决定吧。</p>
+<p>图表宽度的问题在前面已经大致讨论过，pakku.js 选择把图表显示在视频画布中，并且宽度与进度条对齐，获得了非常直观的对应，但是失去了更多交互的可能性；官方查看器和前方高能 1.0 选择将图表显示在播放器的下端，虽然需要一些其他的手段来使进度条和图表之间达成良好的映射，但为图表的交互提供了更多的可能。此外，pakku.js 因为显示尺寸较小，在视觉呈现上也显得有些局限。</p>
+<p>表格的后面三个 item 其实说的是一个问题，就是对于衡量数据呈现的精确度和视觉完整度的取舍。图表呈现区域的宽度是固定且有限的（最高的 limitations 不过是图表区域宽度的像素数，对于B站的视频页面来说，这个数量的上限是960），而视频的长度却是不固定的，大量超出图表显示限度（对B站来说即长度 &gt; 960s）的视频使我们不能忽视这种情况。对于这个问题的解决的方案，这三家又分成了两派：第一派由官方查看器一家使用，当视频长度过长时，直接让图表的横轴突破容器宽度的限制，并且提供一个 scrollbar 供用户来查看图表的各个部分，这样做自然是<strong>保留了数据的全貌</strong>，但是用户必须通过拖动 scrollbar 来查看整个图表，这样就使用户在需要浏览整个图表的时候产生了一些额外的动作，<strong>降低了体验的流畅性，在视觉上也不够直观</strong>；另外一派则由剩下两家使用，视频长度超出一定限度时，为了确保图表能完整地显示在容器中，它们会将原始数据重新采样（取若干原始数据点的平均值，变成一个数据点），从而形成一个能够在容器内完整显示的图表。这样固然对希望看到弹幕分布全貌的用户是比较好的体验，但是对于其他一些需要仔细分析弹幕分布的用户来说（比如视频的制作者和推广方），这样的重采样会<strong>使图表的数据呈现带来一定程度的失真</strong>。那么会不会有一种能同时兼顾两种需求的方案呢？于是我想到了像下图这样的解决方案：</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1fp3k3cof8hg20w504uqry.gif" alt="新的解决方案"></p>
+<p>没错，这就是正在开发中的前方高能 2.0 。在这里我使用了 ECharts 的 DataZoom 模块，比较有效地调和了这两种方案的矛盾。<strong>图表默认展示整个视频弹幕分布的全貌，当用户希望查看某个部分的弹幕分布的细节时，可以拖拉下方的 bar，来缩放和移动到相应的部分进行查看，这样一来就同时兼顾了鸟瞰总体和查看细节两种需求</strong>。考虑到用户有可能忽略这个功能，正式上线的版本可能会在用户初次使用时加入一个简短的教程，帮助用户发现这个功能。</p>
+<p>在这个部分要讨论的最后一个问题，就是纵轴的显示标度问题。官方查看器和前方高能 1.0 都是会根据视频的最高弹幕密度来调整纵轴的显示（将最高弹幕密度作为纵轴的最高点），而 pakku.js 则是在纵轴上固定用 4px 的高度代表一条弹幕。虽然在一般情况下确实不会出现溢出的问题（其图表高度最高有 480px，也就是最高能承受 120 条/s 的最高弹幕密度，事实上我所见过的弹幕密度没有大于 50 条/s 的），但如果弹幕量过小的话，图表显示出来就会在视觉上十分不明显，加上其本身的配色方案和无描边的视觉设计，这个问题就会十分明显了，有时弹幕量小的时候，图表显示出来就像一条几乎没有存在感的线一样，这可能会使用户误以为图标加载失败，带来一些潜在的困扰。</p>
+<!-- pakku高度：480 / 4 -->
+<p><em>—施工中的分割线—</em></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/04/5a93e9e91d975a1c64aa4751/" rel="next" title="对微信小程序的再度思考">
+                <i class="fa fa-chevron-left"></i> 对微信小程序的再度思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/5aa36b6b5ff2ba0583d04ccb/" rel="prev" title="[翻译]通过避免引导性提问来更好地了解参与者的想法">
+                [翻译]通过避免引导性提问来更好地了解参与者的想法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#想法复盘"><span class="nav-number">1.</span> <span class="nav-text">想法复盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#竞品分析"><span class="nav-number">2.</span> <span class="nav-text">竞品分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前方高能-1-0"><span class="nav-number">2.1.</span> <span class="nav-text">前方高能 1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方弹幕分布查看器"><span class="nav-number">2.2.</span> <span class="nav-text">官方弹幕分布查看器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pakku-js"><span class="nav-number">2.3.</span> <span class="nav-text">pakku.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于图表的显示策略"><span class="nav-number">2.4.</span> <span class="nav-text">关于图表的显示策略</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="其实之前微信小程序刚刚内测，开发者都只拿到一个毛坯版的开发工具的时候，我就已经写过一篇文章来探讨过微信小程序的使用场景了，以下是我当时的结论：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对微信小程序的再度思考">
+<meta property="og:url" content="http://peterwang1996.cn/2017/03/04/5a93e9e91d975a1c64aa4751/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="其实之前微信小程序刚刚内测，开发者都只拿到一个毛坯版的开发工具的时候，我就已经写过一篇文章来探讨过微信小程序的使用场景了，以下是我当时的结论：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/4b945ffegw1fbkqntcfpnj20dc0m8wgs.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/4b945ffegw1fbkqr8fgr7j20dc0m8q4z.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/4b945ffegw1fbkt1vqqe6j20m80crt8s.jpg">
+<meta property="og:updated_time" content="2018-03-01T08:25:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对微信小程序的再度思考">
+<meta name="twitter:description" content="其实之前微信小程序刚刚内测，开发者都只拿到一个毛坯版的开发工具的时候，我就已经写过一篇文章来探讨过微信小程序的使用场景了，以下是我当时的结论：">
+<meta name="twitter:image" content="https://ww4.sinaimg.cn/large/4b945ffegw1fbkqntcfpnj20dc0m8wgs.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2017/03/04/5a93e9e91d975a1c64aa4751/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>对微信小程序的再度思考 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2017/03/04/5a93e9e91d975a1c64aa4751/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">对微信小程序的再度思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-04 21:15:27" itemprop="dateCreated datePublished" datetime="2017-03-04T21:15:27+08:00">2017-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-01 16:25:26" itemprop="dateModified" datetime="2018-03-01T16:25:26+08:00">2018-03-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>其实之前微信小程序刚刚内测，开发者都只拿到一个毛坯版的开发工具的时候，我就已经<a href="https://peterwang1996.cn/wechat-small-program-in-my-eyes/">写过一篇文章</a>来探讨过微信小程序的使用场景了，以下是我当时的结论：</p>
+<a id="more"></a>
+<blockquote>
+<p>这些需求，我左看右看，怎么看都觉得这些应用场景都深深地戳中了一种人的痛点，而且我觉得这种人，一定是希望快速推出一个不太复杂的产品并且希望尽量多的人来用，并且没有太多的钱和资源。什么样的人是这样呢？我想应该是那些刚<strong>开始创业的人和团队</strong>。这么一个东西可以说简直是为他们量身打造的，他们可以用小程序快速并且不用花费太多代价地实现和验证的想法，并且积累一批原始的用户。但是我相信，等到他们的用户一旦发展到一定规模，那他们肯定也不会满足于此，也会将自己的应用逐渐地 Native 化。而且，估计也会有很多类似智能家居和 P2P 平台之类的东西会嗅到这股味道吧（笑）。</p>
+</blockquote>
+<p>然而在之后，小程序宣布公测，张小龙老师用<a href="http://money.163.com/16/1228/13/C9CI7J8C002580S6.html" target="_blank" rel="noopener">一段演讲</a>给我们讲述了当初设计小程序的初衷，包括在之后小程序后来正式上线之后，我们才真正看到了，微信团队究竟是希望把小程序做一个什么样的定位。不过，我想也许很多人和我一样，或者在看过张小龙老师的演讲之后，或者在小程序正式上线之后，才大吃一惊，觉得我们之前的想法都是有问题的。然而，我觉得，似乎还有更多的人，包括一些老总、PM 和设计师，都还没有意识到这一点。比如今天我看到一位朋友的朋友圈里面这样说（承蒙但愿哥哥惠允我把这个截图贴上来）：<br><img src="https://ww4.sinaimg.cn/large/4b945ffegw1fbkqntcfpnj20dc0m8wgs.jpg" alt="但愿哥哥的看法"><br>甚至看到一些公众号推送这样的文章：<br><img src="https://ww4.sinaimg.cn/large/4b945ffegw1fbkqr8fgr7j20dc0m8q4z.jpg" alt="公众号的推送"><br>并且，在一份<a href="http://www.iyiou.com/p/37402/fs/1" target="_blank" rel="noopener">首批上线的小程序名单</a>中，我居然看到了类似商城、好书推荐、计算器甚至时钟这样的应用。我觉得也许是时候把我自那次演讲以来的想法稍微缕一缕，总结成一篇文章来做一些探讨。</p>
+<p>那么我们在这里主要想讨论的问题就是这样：小程序想做的事情，真的是在“手机”和“电脑”中间生造一个“平板”吗？</p>
+<p>如你所见，我在上面贴了一张朋友圈的截图，我的那位朋友觉得微信小程序其实就是“在手机和电脑之间强行分出一个平板”，的确，在那次演讲之前，我也是这样想的，不过我多考虑了一层技术上的因素，所以看起来比他的想法稍微乐观一些，这个在我之前那篇文章中有很好的体现。但是，那次演讲提到的内容，却不是我们想象的那样。</p>
+<p>我们来看一看这个演讲，首先，张小龙老师给我们提出了“<strong>无须安装、触手可及、用完即走、无须卸载</strong>”这十六个字作为小程序的核心观点，这跟之前小程序刚刚流出时提出的理念基本是一致的。但是，之后张小龙老师提到的一些理念，尤其是在后面他在谈到一些具体的问题的时候，我似乎变感到了一些不对劲，比如，在提及小程序的入口这个问题的时候，张小龙老师是这么说的：</p>
+<blockquote>
+<p>……小程序也是一样的，如果一个人没有去运行过任何一个小程序，他在微信里也是找不到小程序的入口……</p>
+</blockquote>
+<p>在谈到是否有“小程序商店”的时候：</p>
+<blockquote>
+<p>……但是我们并不会存在一个小程序的商店，所以我们也并不会像外界所猜测的那样，做一个APP的分发想法。从一开始我们就没有这个想法，就像公众号从来不会有一个公众号中心，里面可以分门别类列出所有的东西出来，不会有这样的东西，我们认为应该没有一个中心入口，是去中心化的形态，所以我们也不会做小程序的分类、排行、推荐。</p>
+</blockquote>
+<p>所以你看，小程序其实在微信中并不会有一个特别方便的入口，让用户可以通过非常简单的步骤就能进入。最终小程序的上线也证实了刚刚张小龙老师的说法——（目前）进入一个小程序的方法有两种，一种是扫码，另外一种是搜索小程序然后进入，如下图（偷偷使用了<a href="http://mp.weixin.qq.com/s?__biz=MjM5NDk3NDg1Mw==&amp;mid=2651976894&amp;idx=1&amp;sn=296f6b705a35d278e202c152e8032865&amp;chksm=bd1ac9548a6d40422566f93b587c376c23c70bf3c22988b079be7875aadfc39a0b05455a18df&amp;scene=0#rd" target="_blank" rel="noopener">分答快问的一篇推送</a>中的示意图）<br><img src="https://ww3.sinaimg.cn/large/4b945ffegw1fbkt1vqqe6j20m80crt8s.jpg" alt="小程序进入示意图"><br>你看，上面的图中一共展示了三个步骤，其中第二个步骤还需要用户打开键盘，输入需要用到的小程序名称，显然用户都是“懒惰”的，我觉得他们并不会为了使用一个微信小程序而花费如此功夫。而且最要命的还有一点，那就是小程序并不支持在微信内长按扫码，怪不得分答快问的小编都在推送中写下了这样一段文字，我甚至都能想象到小编在写下这些文字时的表情：</p>
+<blockquote>
+<p>由于小程序不支持长按二维码识别，也无法自己保存后扫描，因此您可能需要扫描您男友、女友、或者基友……手机上的二维码进入「分答快问」。</p>
+</blockquote>
+<p>看到这段文字的时候，我真的是扑哧一声笑了出来，甚至开始脑补起了当微信小程序“大行其道”，真正开始“取代”传统 APP 时候的场景：每个人的口袋里面都揣着一个小本本，里面印着各种各样的二维码，当我们蹲坑的时候，突然想刷一刷知乎，于是我们从兜里掏出我们的“小程序入口本”，“欸，我的知乎二维码呢？我记得就是在这几页中间啊，咋没有……哦找到了找到了，来把微信打开，扫一扫……卧槽，我提莫手一滑把本子掉下去了……卧槽我手机也提莫……”</p>
+<p>显然，这种状态是我们不希望看到的。我们总是希望用户操作的路线越短越简单越好。而微信小程序提供给我们路线最短的入口，很显然就是二维码的扫一扫。到底怎么利用好这个入口呢？我们来挖掘一下官方的观点。</p>
+<p>熟悉微信并研究微信的人应该都知道这样的一个公众号，名叫“微信公开课”，这是腾讯官方的公众号，许多关于微信的第一手资讯都是在这里发布的。我们来看这个公众号的一篇推送，叫<a href="http://mp.weixin.qq.com/s/XBadIyku9j97S7Myp5726Q" target="_blank" rel="noopener">这里有些小程序，等你来扫</a>，大家看完这篇推送，可以发现官方在展示这些小应用的时候，都贴图展示了它们的使用场景。很显然，这些使用场景都是线下的具体场景，二维码也都被贴在了公交站台 / 电影院 / KTV点歌机这些具体的线下场景，而不是一个抽象的“搜索”页面。</p>
+<p>也就是说，微信想做的事情其实是打通线上和线下的服务如果你是技术人员，并且仔细阅读过<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/" target="_blank" rel="noopener">小程序的接口文档</a>，我相信你应该会赞同我的观点，甚至脑海里都能模拟出这样的场景——用户去坐公交，可以通过扫码用小程序查看列车时刻和规划路径，以便更方便地乘车；用户去电影院，可以通过扫柜台前的二维码，查看电影排片的详细信息，或者通过小程序直接选座，并用微信支付完成买票，而不用在排了长队之后得知自己想看的场次已经售完；用户在 KTV 中，扫描屏幕上的二维码，就可以点歌切歌切换原唱伴奏，而屁股却始终没有离开 KTV 柔软的沙发，并且避免了大家在点歌机前排队选歌的场面——我认为这就是小程序希望做到的事情：<strong>让小程序成为使线下生活更加方便的工具，并且小程序自身也成为连接线上线下的媒介，从而增强微信的用户粘性</strong>。</p>
+<p>所以，我们的答案应该就很清楚了：<strong>微信小程序的意义并不在于“在‘电脑’和‘手机’之间生造一个‘平板’出来”</strong>。</p>
+<p><code>#EOF</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/23/5a93e9e91d975a1c64aa4750/" rel="next" title="一个纯 CSS 实现的导航条小动画">
+                <i class="fa fa-chevron-left"></i> 一个纯 CSS 实现的导航条小动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/01/5a9788ae5ff2ba0583d04cc1/" rel="prev" title="前方高能 2.0 中期开发报告">
+                前方高能 2.0 中期开发报告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

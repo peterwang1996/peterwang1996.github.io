@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="按：这是我前段时间投递某咨询公司时收到的一份测题，但最后因为一些意外的原因并没有能够去参与面试。但我觉得这个测题本身非常有趣，所以在征得对方同意后，将这份测题以及我的作答整理出来在这里分享。   本回答共分别为 用户招募条件确定、C端用户（大学生）招募公告、B端用户（雇主）招募公告、C端用户（大学生）招募问卷及设计说明、B端用户（雇主）招募问卷及设计说明 五个部分。其中两个招募问卷不仅有包含在本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次用研笔试的作答：大学生兼职 APP 的用户招募条件 &amp; 用户招募公告">
+<meta property="og:url" content="http://peterwang1996.cn/2018/04/03/5ac2eb165ff2ba0583d04cd6/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="按：这是我前段时间投递某咨询公司时收到的一份测题，但最后因为一些意外的原因并没有能够去参与面试。但我觉得这个测题本身非常有趣，所以在征得对方同意后，将这份测题以及我的作答整理出来在这里分享。   本回答共分别为 用户招募条件确定、C端用户（大学生）招募公告、B端用户（雇主）招募公告、C端用户（大学生）招募问卷及设计说明、B端用户（雇主）招募问卷及设计说明 五个部分。其中两个招募问卷不仅有包含在本">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-03T02:50:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次用研笔试的作答：大学生兼职 APP 的用户招募条件 &amp; 用户招募公告">
+<meta name="twitter:description" content="按：这是我前段时间投递某咨询公司时收到的一份测题，但最后因为一些意外的原因并没有能够去参与面试。但我觉得这个测题本身非常有趣，所以在征得对方同意后，将这份测题以及我的作答整理出来在这里分享。   本回答共分别为 用户招募条件确定、C端用户（大学生）招募公告、B端用户（雇主）招募公告、C端用户（大学生）招募问卷及设计说明、B端用户（雇主）招募问卷及设计说明 五个部分。其中两个招募问卷不仅有包含在本">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2018/04/03/5ac2eb165ff2ba0583d04cd6/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一次用研笔试的作答：大学生兼职 APP 的用户招募条件 & 用户招募公告 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2018/04/03/5ac2eb165ff2ba0583d04cd6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一次用研笔试的作答：大学生兼职 APP 的用户招募条件 & 用户招募公告
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-03 10:50:45" itemprop="dateCreated datePublished" datetime="2018-04-03T10:50:45+08:00">2018-04-03</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>按：这是我前段时间投递某咨询公司时收到的一份测题，但最后因为一些意外的原因并没有能够去参与面试。但我觉得这个测题本身非常有趣，所以在征得对方同意后，将这份测题以及我的作答整理出来在这里分享。</p>
+</blockquote>
+<blockquote>
+<p>本回答共分别为 用户招募条件确定、C端用户（大学生）招募公告、B端用户（雇主）招募公告、C端用户（大学生）招募问卷及设计说明、B端用户（雇主）招募问卷及设计说明 五个部分。其中两个招募问卷不仅有包含在本回答中、附有说明的版本，点击招募公告中的对应链接还可以访问对应招募问卷的在线版本。</p>
+</blockquote>
+<blockquote>
+<p>题目：A公司拟开发一款大学生兼职平台APP（大学生可找各类兼职），打算邀请8-10为用户进行访谈。请思考需要的用户类型，制定用户招募条件，并制作成一份对外发布的《用户招募公告》。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="用户招募条件确定"><a href="#用户招募条件确定" class="headerlink" title="用户招募条件确定"></a>用户招募条件确定</h2><p>考虑到要开发的是一个平台类的产品，所以用户的大类可以分为<strong>C端用户</strong>和<strong>B端用户</strong>，再结合具体场景，不难发现C端用户实际上是希望<strong>通过平台找到兼职的大学生</strong>，B端用户是希望<strong>通过平台发布兼职信息的雇主</strong>。</p>
+<p>通过对目前已有的大学生查找兼职信息 / 雇主发布兼职信息的手段进行分析和汇总，我们不难发现兼职信息的供求双方主要通过以下手段来交换兼职信息：</p>
+<ol>
+<li>已在兼职的大学生获得了自己雇主的兼职信息，与同学朋友进行交流</li>
+<li>雇主在大学生密集的地方（如学校宿舍区）通过张贴广告 / 派发传单来发布兼职信息</li>
+<li>通过线下的专门场所（如人才市场）来发布 / 了解信息</li>
+<li>雇主通过联系学生群体中的意见领袖（团体或个人，如社团 / 学生会 / 班干部 / 老师）或雇用校园代理来扩散兼职信息</li>
+<li>雇主在大学生常用的线上社区（如学校贴吧 / 论坛 / 兼职QQ群）或行业线上社区（如互联网行业社区V2EX）来发布兼职信息</li>
+<li>通过“智联招聘”等传统互联网招聘平台（或企业自有的平台）进行兼职信息的发布 / 获取</li>
+<li>通过“兼职猫”等专业的互联网兼职平台进行兼职信息的发布 / 获取</li>
+</ol>
+<p>结合访谈需求对以上手段的梳理和综合，我们可以大致将潜在用户做如下的分类：</p>
+<ol>
+<li>没有线上发布 / 获取兼职信息经验的</li>
+<li>有线上发布 / 获取兼职信息经验，但没有使用过线上招聘平台的</li>
+<li>使用过传统线上招聘平台，但没有使用过专业互联网兼职平台的</li>
+<li>使用过专业互联网兼职招聘平台的</li>
+</ol>
+<p>对于作为C端用户的在校大学生，可以想到，对于以上四个类别，第一种是数量较少，且相对较难转化为目标产品的用户的，结合访谈人数的限制，在这里不做考虑，而后三种有在线上寻找兼职信息的用户都有成为目标产品用户的潜质，所以将其纳入期待的访谈对象。此外，从未有过兼职经历的大学生和已经有过兼职经历（但是有兼职愿望）的大学生，在搜寻兼职信息上，无论是在搜寻渠道和习惯上，还是筛选信息的侧重点上都会有所不同。所以我们的访谈对象有必要同时覆盖到这两类用户。</p>
+<p>对于作为B端的雇主，我们可以同样地分成两类，一类是像小餐馆这类的个体户，另一类是相对大的公司/企业的HR。对于这两类雇主，他们都有可能使用过专业的兼职招聘平台。但对于大公司的HR来说，相对使用在网络社区发布实习信息的方式，他们更有可能会通过传统的线上招聘平台来进行兼职信息发布，而对于个体户则恰好相反。并且这两类用户在招聘兼职大学生时关心的问题也会有所不同。在对访谈对象进行选择的时候，应该注意到这些问题。</p>
+<p>综上所述，我认为分配这十个访谈对象的一种可行的方案为：</p>
+<ol>
+<li>C端用户（希望通过平台找到兼职的大学生，共6人）<ol>
+<li>有线上获取兼职信息经验，但没有使用过线上招聘平台，第一次找兼职的用户</li>
+<li>有线上获取兼职信息经验，但没有使用过线上招聘平台，有过兼职经验的用户</li>
+<li>使用过传统线上招聘平台，但没有使用过专业互联网兼职平台，第一次找兼职的用户</li>
+<li>使用过传统线上招聘平台，但没有使用过专业互联网兼职平台，有过兼职经验的用户</li>
+<li>使用过专业互联网兼职招聘平台的，第一次找兼职的用户</li>
+<li>使用过专业互联网兼职招聘平台的，有过兼职经验的用户</li>
+</ol>
+</li>
+<li>B端用户（希望通过平台发布兼职信息的雇主，共4人）<ol>
+<li>使用过专业互联网兼职招聘平台的大企业HR</li>
+<li>使用过专业互联网兼职招聘平台的个体户</li>
+<li>使用过传统线上招聘平台，但没使用过专业互联网兼职招聘平台的大企业HR</li>
+<li>有线上发布兼职信息经验，但没使用过专业互联网兼职招聘平台的个体户</li>
+</ol>
+</li>
+</ol>
+<p>除此之外，满足以下这些要求的访谈对象能够帮助我们更加顺利地推进访谈过程：</p>
+<ol>
+<li>目前正在发布 / 获取兼职信息，或者在两周之内有这样经历的</li>
+<li>愿意且能够清晰地表达出自己想法的</li>
+<li>居住地在公司附近的或愿意来公司参加访谈的（方便面访）</li>
+<li>有空的参加访谈的时间与公司安排的访谈时间相匹配的</li>
+</ol>
+<p>[用户招募条件部分结束]</p>
+<div style="page-break-after: always;"></div>
+
+<p><em>C端用户（大学生）招募公告</em></p>
+<h2 id="A-公司用户访谈活动——邀请正在找兼职的你！"><a href="#A-公司用户访谈活动——邀请正在找兼职的你！" class="headerlink" title="A 公司用户访谈活动——邀请正在找兼职的你！"></a>A 公司用户访谈活动——邀请正在找兼职的你！</h2><p><strong>我们是谁</strong></p>
+<p>我们是 A 公司的研发团队，为了全面地了解目前大学生网上兼职信息供求情况，需要邀请若干名在校大学生，在下周参与一个大约持续一个小时的访谈。</p>
+<p><strong>通过参与这次访谈，你能得到……</strong></p>
+<ol>
+<li>A 公司的一份精美的周边礼物或 100 元酬金</li>
+<li>一次参观 A 公司的机会</li>
+</ol>
+<p><strong>我们希望你……</strong></p>
+<ol>
+<li>是在校大学生</li>
+<li>目前正在网上找兼职工作，或者是过去两周内有过在网上找兼职工作的经历</li>
+<li>下周（3月19日至3月25日之间）在成都，且有空参加访谈</li>
+</ol>
+<p><strong>如果你符合以上要求，并希望参与这次活动……</strong></p>
+<p>请点击<a href="https://wj.qq.com/s/1934241/0674" target="_blank" rel="noopener">这个链接</a>填写一份简短的问卷。在你完成问卷后，我们的工作人员将会通过电话与你取得联系。</p>
+<p>你的真实想法对我们非常重要，感谢你的参与！</p>
+<p><em>[招募公告结束]</em></p>
+<div style="page-break-after: always;"></div>
+
+<p><em>B端用户（雇主）招募公告</em></p>
+<h2 id="A-公司用户访谈活动招募兼职大学生雇主-招聘专员"><a href="#A-公司用户访谈活动招募兼职大学生雇主-招聘专员" class="headerlink" title="A 公司用户访谈活动招募兼职大学生雇主 / 招聘专员"></a>A 公司用户访谈活动招募兼职大学生雇主 / 招聘专员</h2><p>我们是 A 公司的研发团队，为了全面地了解目前大学生网上兼职信息供求情况，需要邀请若干名雇主和企业的招聘专员，在下周参与一次访谈。访谈大约持续一个小时，完成访谈后您将获得100元酬金作为感谢。</p>
+<p><strong>我们正在寻找这样的用户：</strong></p>
+<ol>
+<li>您（或您的单位）正在网上发布消息招聘在校兼职大学生，或者在前两周有过这样的经历</li>
+<li>下周（3月19日至3月25日之间）在成都，且有空参加访谈</li>
+</ol>
+<p>如果您符合以上要求，并希望参加这次访谈，请点击<a href="https://wj.qq.com/s/1934383/0d3d" target="_blank" rel="noopener">这个链接</a>填写一份简短的问卷。在您完成问卷后，我们的工作人员将会通过电话与您取得联系。</p>
+<p>您的真实想法对我们非常重要，感谢您的参与！</p>
+<p><em>[招募公告结束]</em></p>
+<div style="page-break-after: always;"></div>
+
+<p><em>C端用户（大学生）招募问卷及设计说明</em></p>
+<h2 id="A-公司用户访谈招募问卷"><a href="#A-公司用户访谈招募问卷" class="headerlink" title="A 公司用户访谈招募问卷"></a>A 公司用户访谈招募问卷</h2><p><strong>您好！感谢您对这次访谈活动的关注！</strong></p>
+<p><strong>如果您希望参加这次访谈活动，请您认真填写这份问卷，方便我们在与您联系之前，对您有一个大致的了解。</strong></p>
+<p><strong>完成这份问卷大约需要5~10分钟，感谢您的付出！</strong></p>
+<hr>
+<p><strong>您目前就读的年级是？[单选题]</strong></p>
+<ol>
+<li>大一</li>
+<li>大二</li>
+<li>大三</li>
+<li>大四</li>
+<li>研一</li>
+<li>研二</li>
+<li>研三</li>
+<li>我不是在校本科/专科/硕士生<blockquote>
+<p>设计此题的目的是为了筛除非在校大学生，即选择了第8项的人群。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>以下哪个选项的描述符合您目前的情况？[单选题]</strong></p>
+<ol>
+<li>我没有做过兼职，但最近正在寻找兼职的机会</li>
+<li>我做过兼职，而且最近正在寻找兼职的机会</li>
+<li>我在最近的两个星期之内找到了第一份兼职</li>
+<li>我做过不止一次兼职，而且最近的一次兼职是在最近两周找到的</li>
+<li>以上描述均不符合我的情况<blockquote>
+<p>此题的1、3两项对应第一次找兼职的人群，2、4两项对应已有兼职经验的人群，选择5的人群则应被筛除。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>在您收集兼职信息时，哪些手段是您正在或曾经使用到的？[多选题]</strong></p>
+<ol>
+<li>同学间交流了解</li>
+<li>看到街边的传单 / 张贴广告</li>
+<li>出席线下的招聘场所（如招聘会或人才市场）</li>
+<li>从社团 / 学生会 / 班干部 / 老师处了解</li>
+<li>从专门的校园兼职代理处了解</li>
+<li>通过学校贴吧 / 论坛 / 兼职QQ群或其他社交媒体（如微博 / 论坛）了解</li>
+<li>通过专门的招聘网站 / APP了解</li>
+<li>+其他（请注明）____<blockquote>
+<p>选择了此题第6项（未选第7项）的对应有线上获取兼职信息经验，但没有使用过线上招聘平台的人群，选第七项的对应使用过互联网招聘平台的人群，还需要在下一题做细分。未选6、7两项的人群应被筛除。此外，选择了“其他”的应根据其填入的内容酌情处理。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>您在收集兼职信息时，曾使用过 / 正在使用的网站 / APP有哪些？[多选题]</strong></p>
+<ol>
+<li>前程无忧</li>
+<li>智联招聘</li>
+<li>58同城</li>
+<li>大街网</li>
+<li>51Job</li>
+<li>兼职猫</li>
+<li>微兼职</li>
+<li>同学帮帮</li>
+<li>e兼职</li>
+<li>+其他____<blockquote>
+<p>选择了此题第1~5项（未选择第6~9项）对应使用过传统线上招聘平台，但没有使用过专业互联网兼职平台的人群，选择了第6~9项对应使用过使用过专业互联网兼职平台的人群。此外，选择了“其他”的应根据其填入的内容酌情处理。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>请用几句话告诉我们，您在找兼职的过程中遇到过的困难或麻烦有哪些。[多行文本题]</strong></p>
+<blockquote>
+<p>此题用于考察用户的思维的清晰性以及表达的意愿和流畅性。处于访谈成本的考虑，应优先考虑邀请在此题认真作答，并且答案清楚明白，且答案长度不少于两句话的用户进行访谈。</p>
+</blockquote>
+<hr>
+<p><strong>您就读的大学是？[联动题，选项略]</strong></p>
+<blockquote>
+<p>此题用于考察是否方便邀请此用户进行当面访谈。</p>
+</blockquote>
+<hr>
+<p><strong>请告诉我们您希望接受访谈的时间[单行文本题]</strong>(3月19日至3月25日之间，输入示例：3月20日下午)</p>
+<blockquote>
+<p>出题目的同上。</p>
+</blockquote>
+<hr>
+<p><strong>请留下您的手机号码，方便我们与您取得联系[单行文本题]</strong></p>
+<blockquote>
+<p>获取用户的联系方式。</p>
+</blockquote>
+<p>[问卷结束]</p>
+<div style="page-break-after: always;"></div>
+
+<p><em>B端用户（雇主）招募问卷及设计说明</em></p>
+<h2 id="A-公司用户访谈招募问卷-1"><a href="#A-公司用户访谈招募问卷-1" class="headerlink" title="A 公司用户访谈招募问卷"></a>A 公司用户访谈招募问卷</h2><p><strong>您好！感谢您对这次访谈活动的关注！</strong></p>
+<p><strong>如果您希望参加这次访谈活动，请您认真填写这份问卷，方便我们在与您联系之前，对您有一个大致的了解。</strong></p>
+<p><strong>完成这份问卷大约需要5~10分钟，感谢您的付出！</strong></p>
+<hr>
+<p><strong>以下哪个选项的描述符合您目前的情况？[单选题]</strong></p>
+<ol>
+<li>我的公司 / 营业场所没有专门的人员 / 部门负责招聘兼职大学生，作为公司 / 营业场所的负责人，我亲自负责这件事</li>
+<li>我是我们公司 / 营业场所负责招聘兼职大学生的人员，但我不是公司 / 营业场所的主要负责人</li>
+<li>以上描述均不符合我的情况<blockquote>
+<p>此题的选项1对应个体户，选项2对应大企业HR，同时也筛除了不从事兼职大学生招聘的人群，即选择第3项的人群</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>以下哪个选项的描述符合您目前的情况？[单选题]</strong></p>
+<ol>
+<li>我的公司 / 营业场所正在招聘兼职大学生</li>
+<li>我的公司 / 营业场所在前两周内招聘兼职大学生</li>
+<li>以上描述均不符合我的情况<blockquote>
+<p>此题用于筛除最近没有从事招聘兼职大学生工作的人群，即选择了第3项的人</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>在您发布兼职信息时，哪些手段是您正在或曾经使用到的？[多选题]</strong></p>
+<ol>
+<li>通过已招聘的兼职大学生向他们的同学转达</li>
+<li>张贴广告 / 派发传单</li>
+<li>在线下的招聘场所（如招聘会或人才市场）发布信息</li>
+<li>联系学校的社团 / 学生会 / 班干部 / 老师，请他们帮忙扩散信息</li>
+<li>聘用 / 联系校园兼职代理</li>
+<li>通过学校贴吧 / 论坛 / 兼职QQ群或其他社交媒体（如微博 / 论坛）发布消息</li>
+<li>通过专门的招聘网站 / APP发布消息</li>
+<li>+其他（请注明）____<blockquote>
+<p>选择了此题第6项（未选第7项）的对应有线上发布兼职信息经验，但没有使用过线上招聘平台的人群，选第七项的对应使用过互联网招聘平台的人群，还需要在下一题做细分。未选6、7两项的人群应被筛除。此外，选择了“其他”的应根据其填入的内容酌情处理。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>您在发布兼职信息时，曾使用过 / 正在使用的网站 / APP有哪些？[多选题]</strong></p>
+<ol>
+<li>企业自有的招聘平台</li>
+<li>前程无忧</li>
+<li>智联招聘</li>
+<li>58同城</li>
+<li>大街网</li>
+<li>51Job</li>
+<li>兼职猫</li>
+<li>微兼职</li>
+<li>同学帮帮</li>
+<li>e兼职</li>
+<li>+其他____<blockquote>
+<p>选择了此题第1~6项（未选择第7~10项）对应使用过传统线上招聘平台，但没有使用过专业互联网兼职平台的人群，选择了第7~10项对应使用过使用过专业互联网兼职平台的人群。此外，选择了“其他”的应根据其填入的内容酌情处理。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>请用几句话告诉我们，您在招聘兼职大学生的过程中遇到过的困难或麻烦有哪些。[多行文本题]</strong></p>
+<blockquote>
+<p>此题用于考察用户的思维的清晰性以及表达的意愿和流畅性。处于访谈成本的考虑，应优先考虑邀请在此题认真作答，并且答案清楚明白，且答案长度不少于两句话的用户进行访谈。</p>
+</blockquote>
+<hr>
+<p><strong>您所在的地区是？[联动题，选项略]</strong></p>
+<blockquote>
+<p>此题用于考察是否方便邀请此用户进行当面访谈。</p>
+</blockquote>
+<hr>
+<p><strong>请告诉我们您希望接受访谈的时间[单行文本题]</strong>(3月19日至3月25日之间，输入示例：3月20日下午)</p>
+<blockquote>
+<p>出题目的同上。</p>
+</blockquote>
+<hr>
+<p><strong>请留下您的手机号码，方便我们与您取得联系[单行文本题]</strong></p>
+<blockquote>
+<p>获取用户的联系方式。</p>
+</blockquote>
+<p>[问卷结束]</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/11/5aa4c1495ff2ba0583d04ccf/" rel="next" title="[翻译]定量和定性可用性研究中的任务拟定">
+                <i class="fa fa-chevron-left"></i> [翻译]定量和定性可用性研究中的任务拟定
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/26/5b31daa95ff2ba0583d04cd9/" rel="prev" title="[UXRen译]优秀用户体验设计师的12个特质——我从从优秀设计师身上观察所得">
+                [UXRen译]优秀用户体验设计师的12个特质——我从从优秀设计师身上观察所得 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户招募条件确定"><span class="nav-number">1.</span> <span class="nav-text">用户招募条件确定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-公司用户访谈活动——邀请正在找兼职的你！"><span class="nav-number">2.</span> <span class="nav-text">A 公司用户访谈活动——邀请正在找兼职的你！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-公司用户访谈活动招募兼职大学生雇主-招聘专员"><span class="nav-number">3.</span> <span class="nav-text">A 公司用户访谈活动招募兼职大学生雇主 / 招聘专员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-公司用户访谈招募问卷"><span class="nav-number">4.</span> <span class="nav-text">A 公司用户访谈招募问卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-公司用户访谈招募问卷-1"><span class="nav-number">5.</span> <span class="nav-text">A 公司用户访谈招募问卷</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

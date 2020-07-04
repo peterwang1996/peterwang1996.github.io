@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本译文首次发表于 UXRen （ http://uxren.cn/?p=60195 ），由UXRen翻译组出品作者：Kathryn Whitenton | 翻译：包子不好吃 审校：Ivan  概要：在对字体、颜色和其他的视觉元素进行评估的时候，要兼顾视觉印象和行为效果。 我们对诸如字体、颜色、对齐和图像这样的视觉元素的使用，早已不仅局限于提供易用的体验，我们也会用它来表达复杂的品牌特质（如友好、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UXRen译-如何对视觉设计进行测试和有效评估">
+<meta property="og:url" content="http://peterwang1996.cn/2018/12/09/ckc7o4m4u000270v5qwifhz9m/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="本译文首次发表于 UXRen （ http://uxren.cn/?p=60195 ），由UXRen翻译组出品作者：Kathryn Whitenton | 翻译：包子不好吃 审校：Ivan  概要：在对字体、颜色和其他的视觉元素进行评估的时候，要兼顾视觉印象和行为效果。 我们对诸如字体、颜色、对齐和图像这样的视觉元素的使用，早已不仅局限于提供易用的体验，我们也会用它来表达复杂的品牌特质（如友好、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1fvjv5bpr54j20ru046wek.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1fvjv527lmqj212w05zdhp.jpg">
+<meta property="og:updated_time" content="2020-07-04T12:36:44.673Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UXRen译-如何对视觉设计进行测试和有效评估">
+<meta name="twitter:description" content="本译文首次发表于 UXRen （ http://uxren.cn/?p=60195 ），由UXRen翻译组出品作者：Kathryn Whitenton | 翻译：包子不好吃 审校：Ivan  概要：在对字体、颜色和其他的视觉元素进行评估的时候，要兼顾视觉印象和行为效果。 我们对诸如字体、颜色、对齐和图像这样的视觉元素的使用，早已不仅局限于提供易用的体验，我们也会用它来表达复杂的品牌特质（如友好、">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/4b945ffegy1fvjv5bpr54j20ru046wek.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2018/12/09/ckc7o4m4u000270v5qwifhz9m/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UXRen译-如何对视觉设计进行测试和有效评估 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2018/12/09/ckc7o4m4u000270v5qwifhz9m/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UXRen译-如何对视觉设计进行测试和有效评估
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-09 17:11:52" itemprop="dateCreated datePublished" datetime="2018-12-09T17:11:52+08:00">2018-12-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-07-04 20:36:44" itemprop="dateModified" datetime="2020-07-04T20:36:44+08:00">2020-07-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本译文首次发表于 UXRen （ <a href="http://uxren.cn/?p=60195" target="_blank" rel="noopener">http://uxren.cn/?p=60195</a> ），由UXRen翻译组出品<br>作者：Kathryn Whitenton | 翻译：包子不好吃 审校：Ivan</p>
+</blockquote>
+<p>概要：在对字体、颜色和其他的视觉元素进行评估的时候，要兼顾视觉印象和行为效果。</p>
+<p>我们对诸如字体、颜色、对齐和图像这样的视觉元素的使用，早已不仅局限于提供易用的体验，我们也会用它来表达复杂的品牌特质（如友好、可靠和创新等等）。</p>
+<p>许多团队最初会定义他们想要表达的品牌特质，随后设计师和相关负责人会选出一些他们认为可以传达这些品牌特质的视觉元素。这种方法假设设计师和相关负责人能准确地预测用户的想法。这可能是一个很好的开始，可是并不能确保在设计师看来很“友好”的东西，在用户看来也是这样。</p>
+<p>当企业能够从有效的品牌传播中获益的时候，我们就应该对视觉选择及其对用户态度的影响进行严谨、数据驱动的评估了。</p>
+<a id="more"></a>
+<h2 id="如何测试用户对视觉设计的感知"><a href="#如何测试用户对视觉设计的感知" class="headerlink" title="如何测试用户对视觉设计的感知"></a>如何测试用户对视觉设计的感知</h2><p>和其他用研测试一样，你需要招募能代表目标受众的测试参与者。他们不需要懂设计——人们不需要学习视觉设计就能知道自己喜欢什么；<strong>事实上，用户只需0.1秒的时间，就能在心里为一个设计打出一个可靠的分数了（根据 Gitte Lindgaard 和她的同事们的一项研究）</strong>。然而知道用户是否喜欢这个设计，并不代表我们就知道了设计是否真正地传达了正确的品牌特质。（需要注意的是，你是否喜欢这个设计、以及你认为这个设计是否表达了品牌特质，都不能作为一个有效的评判标准。无论是你，还是你们团队的其他成员，亦或是你们的管理层，都不能代表用户。）</p>
+<p>为了避免在测量品牌感知时仅仅测量到人们是否喜欢某个设计，可以使用一种更加结构化的方法，主要包含以下这两部分：</p>
+<ol>
+<li>展示视觉刺激物：向研究的参与者展示视觉设计产物。可以是静态的图像、原型，或是动态交互的网页和应用。</li>
+<li>评估用户对这些刺激物的反应：使用开放或者封闭的问题对用户的反应进行测量。</li>
+</ol>
+<h2 id="视觉设计测试刺激物的呈现"><a href="#视觉设计测试刺激物的呈现" class="headerlink" title="视觉设计测试刺激物的呈现"></a>视觉设计测试刺激物的呈现</h2><p>你所用的“测试刺激物”（也就是设计的视觉方案）可以很容易地用于几种不同类型的研究。如果是开展面对面的视觉设计评估，你就只需要给参与者展示一张静态的图片（可以是打印出来的，也可以是显示在屏幕上的）就可以了。打印出的页面应该与实际的大小相仿；对于长度超过两屏的页面，通常用电子图片呈现会更好，因为如果将这些东西打印出来，因为用户一次性看到内容会比他们实际在屏幕上看到的多得多。如果你希望确保得到用户对某个视觉设计第一印象的反馈，就使用静态图像作为刺激物。</p>
+<p>我们也可以使用远程的、无监督的方法来评估设计和品牌印象。这种方法适用于难以与用户面对面，或者需要测试大量用户的场景（适用于需要大量样本来确保结论可靠性的场景）。在远程评估中，你可以用任意一种调查工具来呈现图像作品。</p>
+<p>如果你希望评估用户的第一印象，就在短时间内给用户呈现视觉刺激。可以使用以下两种方式来实现这个目标：</p>
+<ol>
+<li><strong>五秒测试：</strong><br> 在这种测试中，刺激呈现的时间只有5秒（或者一个其他的比较短的时间）。这是准确捕获人们“直觉反应”最好的方法。5秒的浏览时间很短，用户来不及去阅读文字以及注意到诸如具体字体和颜色之类的细节，但这段时间足以让用户形成一个能反映视觉风格的印象。</li>
+<li><strong>首次点击测试：</strong><br> 在给参与者展示设计之前，下达一个具体的指示（例如：“了解更多关于这个企业的信息”），然后在他们点击屏幕上能够完成上述任务的地方之后让他们停止。大部分用户在这种测试中仍然只会花费数秒，而且在这样的任务中，他们不会去有意地浏览整张页面，而是会寻找某一个跟任务有关的功能或者链接，对于其他元素只是匆匆一瞥。如果你预期用户在第一次来到你的网站时就已经有明确的目标，那么这个测试是最合适的。</li>
+</ol>
+<p>这两种测试是最容易通过远程的方式开展的。你可以使用一些服务来开展这些测试，诸如 5 Second Test 和 Userzoom（用于五秒测试）或是 Chalkmark（用于首次点击测试）。</p>
+<p>一定要记得，在首次点击测试中，你提供的任务说明肯定会影响参与者注意到和记住的视觉设计内容。如果你的用户可能会在你的网站上有多个目标，那么可以从若干个不同的任务中随机地分配一个，或者还是直接使用5秒测试。</p>
+<h3 id="比较多种设计"><a href="#比较多种设计" class="headerlink" title="比较多种设计"></a>比较多种设计</h3><p>通常地，向用户展示多个视觉设计方案可以帮助我们了解到每种设计方案中，用户喜欢什么、不喜欢什么。鉴于一部分人的回答也许会受到他们最先看到的版本的影响，如果让参与者来评估多个设计，请务必改变他们看到各个备选方案的顺序。（例如：如果一个版本比较容易理解，那些看到这个版本的参与者就已经首先对内容有了了解，对其他版本的内容也不会那么困惑了。）对每个人最初看到了哪个版本做好记录，这样你在分析参与者的回答时就可以考虑到这些因素。</p>
+<p>同样地，在让用户来评估同种设计的不同版本时，一定要让差异明显到让一个外行人一眼就能发现。一些微小的变化（比如对字号和字体的微调）可能对于视觉设计师是显而易见的，但普通人通常注意不到它们。要是让人们有意识地对这些微妙的细节进行识别和评估，通常会让他们感到困惑，并且白白浪费你的时间。（更糟糕的是，你可能会成为观察者效应的受害者。也就是说，即便用户可能并不觉得这两个十分相像的版本有什么不同，为了回答你的问题，他们会编造一个答案来回答你。）</p>
+<h2 id="评估用户反应：开放式问题-vs-结构化问题"><a href="#评估用户反应：开放式问题-vs-结构化问题" class="headerlink" title="评估用户反应：开放式问题 vs. 结构化问题"></a>评估用户反应：开放式问题 vs. 结构化问题</h2><p>在给参与者展示了设计之后，就可以测量他们的反应了。人们的审美印象是很特殊的，并且需要进行系统的分析才能得出有意义的趋势。这可以通过开放式反馈来完成，但使用更加结构化一点的方法可以帮助我们更容易地理解整体模式。下面是一些可以使用的技术，由完全开放到高度结构化来排列：</p>
+<ul>
+<li>开放式偏好解释：让用户说明他们喜欢某个设计的原因</li>
+<li>开放式词汇选择：让用户列出三到五个词来形容某个设计</li>
+<li>封闭式词汇选择（合意性测试）：给用户提供一个词语列表，让他们选择最能代表某个设计的词</li>
+<li>数字评分：收集关于某个种设计能在多大程度上表达某个特定品牌特质的数字评分</li>
+</ul>
+<h3 id="开放式偏好解释"><a href="#开放式偏好解释" class="headerlink" title="开放式偏好解释"></a>开放式偏好解释</h3><p>第一种方法需要让人们解释为什么他们喜欢或不喜欢这个某个设计。这种方法在与能积极且清晰地表达自己想法的用户面对面交流的时候很有效。这种问法有点儿广撒网的意思，当你并不了解受众的期望但是希望知道什么对他们最重要的时候，这种问法会很有用。它还可以帮助我们甄别掉一些基于个人特质的观点（例如“我喜欢紫色”），以便我们专注于更实质的因素。这种方法的缺点是，如果参与者的动机不强或者表述不清楚，你得到的回答可能会比较简短或者不相关。这种方法在缺乏管理的远程施测（例如在问卷调查）中的风险尤其致命，因为当有人给你一个非常模糊的回答（例如“这挺好的”）时，你没有办法通过追问获得更多细节。</p>
+<h3 id="开放式词汇选择"><a href="#开放式词汇选择" class="headerlink" title="开放式词汇选择"></a>开放式词汇选择</h3><p>对用户认知进行评估的较为结构化的方式是让测试的参与者列出若干个用于形容某个设计的词语。这种形式可以在确保你至少能获得一些特定的反馈的同时，仍然能保持问题的开放性，使得你可以发现一些或许自己没有考虑到，但你的受众群体却很关心的问题。你也许会收到非常多样的描述，这使得你需要仔细地分析这些描述来提取出一个有意义的主题。一个比较好的办法是将这些描述通过一般的“积极、消极和中立”的范畴进行分类，然后将意义相近的词语归类在一起，接着评估它们与你目标的品牌属性是否匹配。例如，下表中展示了对一个 B2B 网站的描述，这个网站的品牌目标是值得信赖、现代化和有用。这些由研究参与者提供的描述中并没有和以上词语相符合的，然而很多用户都会用“简单”来形容这个设计（既有积极的，也有消极的）。</p>
+<table>
+<thead>
+<tr>
+<th>积极的(Positive)</th>
+<th>中性的(Neutral)</th>
+<th>消极的(Negative)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>简单(Simple)<br>简单、大胆(Simple, bold)<br>专业、整洁(Professional, Neat)<br>企业的(Corporate)<br>优雅(Elegant)<br>人性化(Human)</td>
+<td>素净(Sober)<br>三分的(Tripartite)<br>分成三部分(3 parts)</td>
+<td>乏味(Bland)<br>乏味、典型、安全(Bland, Typical, Safe)<br>太简单(Too simple)<br>简单、一般(Simple, Generic)<br>平凡无奇(Plain)<br>基础(Basic)<br>过时(Dated)<br>信息太多(Too Much Infomation)<br>简朴(Clinical)</td>
+</tr>
+</tbody>
+</table>
+<p><em>开放式词汇选择问题会引出非常多的描述，必须仔细分析这些描述，才能确定它们是否表达了我们想要的品牌特质。</em></p>
+<h3 id="结构化词汇选择"><a href="#结构化词汇选择" class="headerlink" title="结构化词汇选择"></a>结构化词汇选择</h3><p>我们还可以对词汇选择法进行更加严格的控制，即要求用户从我们提供的词汇列表中选择描述。通过给用户提供一个受限的词汇集合，这种方法特别聚焦于评估参与者是否感知到了我们提供的品牌属性。你希望传达的品牌特质，应该和一些其他与之相反或无关的选项一起，包含在你的词汇列表中。结构化词汇选择（也被称为“合意性测试”）不如开放式词汇选择在用于发现新观点时那样灵敏，但用它来比较同一设计的不同版本或同一设计在不同受众群中的反应时会非常好用。这种方法在面对面的研究中非常有效，你可以追问用户，然后在他们解释他们选择每个词的原因时指着某个的设计进行说明。这种方法也可以适用于远程研究，但不要将它与“五秒测试”结合起来做，因为浏览一个较长的词汇列表会花费比较长的时间，等他们读完这个列表，就想不起太多他们在先前只花了五秒钟看过的设计了。相反地，使用的调查工具应该让人们能一边浏览设计，一边从列表里选择词语。</p>
+<h2 id="对品牌感知的数字评分"><a href="#对品牌感知的数字评分" class="headerlink" title="对品牌感知的数字评分"></a>对品牌感知的数字评分</h2><p>最后，控制最严格的方法是收集关于设计方案在多大程度上表达了每种品牌特质。为了避免过长的测试时间，通常挑选三至五个最重要的品牌品质，并让人们对他们从设计中感知到这些品质的程度进行评分。（测试的题目越多，问卷就越烦琐，参与者随机回答的几率就会越大。）因为这种范式限制了发现不同观点和反应的能力，所以只有你在先前的研究中确定了最常见的感知，并且只是想评估这几种品质的相对强度时，使用数字评分才是合适的。</p>
+<p>最后稍微提一下焦点小组：尽管这种方法可以用来捕获用户喜好，但除非你有一位优秀且经验丰富的焦点小组主持者，否则使用这种方法的风险是很高的。从一个小组会话中捕获每个人对于一个视觉设计的具体反馈是十分困难的。一个可行的方法是让参与者参与到小组讨论之前，将自己的感知写下来，并且将这些写下的评论收集起来，以供后期分析。同样地，焦点小组无法捕获行为信息。</p>
+<h2 id="在可用性测试中评估视觉设计"><a href="#在可用性测试中评估视觉设计" class="headerlink" title="在可用性测试中评估视觉设计"></a>在可用性测试中评估视觉设计</h2><p>以上提到的所有方法都是用来评估视觉印象的。但事实是：人们并不会孤立地接受视觉设计，而是将其与内容和交互一起作为一个整体来感知。用户体验的每一个维度都会影响其他的维度：在审美上具有吸引力的设计往往被认为是更好用的。同样地，用户对品牌特质的认知也会被交互设计选择所影响：一个乍看之下简单而热情的设计，如果人们不知道如何使用它，这个设计就会很快变得令人困惑和沮丧。</p>
+<p>虽然第一印象很重要，但这并不是全部。你同样在用户与整个产品的真实交互和过程中去评估视觉设计会如何影响用户的行为和任务成功率。事实上，诸如像稍稍增大标题尺寸这样微妙的变化，在用户实际使用产品时才会真的注意到；比如用户可能很难一眼就看出尺寸的变化，但当它们浏览一篇文章的时候，更大的标题能让用户更轻易地找到特定的章节。这种行为的改变也许会再次提高用户在查找相关信息时的可用性，从而让他们更加喜欢这个网站。人们甚至可能会说这篇文章写得更好（因为人们阅读了更多他们感兴趣的信息），虽然除了字体之外的内容都是完全一样的。</p>
+<p>幸运的是，我们可以很轻松地修改平时使用到的可用性测试方案，从而将视觉设计纳入我们的考察范围。你可以加入若干关于视觉印象的问题，甚至在常规的可用细测试流程中加入词汇选择联系。<strong>然而，这些对审美的评估应该在行为可用性研究完成后进行，而不要用这种方法获取用户的第一印象。</strong></p>
+<p>这个顺序很重要，因为如果你在整个流程的开头就询问了用户对于视觉设计的观点，用户的偏见就会影响行为研究，这样会导致一定的风险。特别是在你向用户展示了几种不同的版本，并且询问用户“最喜欢”哪个的时候。这样的话，用户可能就会在接下来的环节中，忽略或者缩小他们在体验中遇到的所有问题。</p>
+<p>不要在流程的开头就去询问用户对于视觉设计的感知，而应该先让他们完成行为任务，并对他们的与视觉设计有关的行动和真实的评价加以注意。例如，在最近一次对我们公司网站原型的一次设计中，我们让用户完成诸如查找内容之类额常规可用性任务。在完成任务的过程中，一位用户随口说了句他觉得页面顶上的信导航菜单很有用。这个菜单并不是设计中的新功能——这个菜单跟之前用户来到这个网站的时候看到的一样，只不过是字体变细了一些，并且没有全部是大写了。</p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1fvjv5bpr54j20ru046wek.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/4b945ffegy1fvjv527lmqj212w05zdhp.jpg" alt=""></p>
+<p><em>这样一个研究使用一般的可用性测试方法比较了在全局导航中的两种不同的字体。研究发现，原先使用粗体、全部使用大写字母的的导航菜单（上方图片）与使用细体、小写字母时显得更容易被发现，并且被看成了一个“新增的”东西。</em></p>
+<p>一旦完成了研究的任务部分，你就可以开始评估用户对品牌特质的感知了。这时用户的答案不会像在五秒测试中那样仅仅基于视觉印象，而是一个由视觉、内容和交互共同构建的印象，这种印象实际上与用户在真实世界中的反馈更加接近。</p>
+<h2 id="视觉印象应该单独测试，还是应该作为可用性测试的一部分？"><a href="#视觉印象应该单独测试，还是应该作为可用性测试的一部分？" class="headerlink" title="视觉印象应该单独测试，还是应该作为可用性测试的一部分？"></a>视觉印象应该单独测试，还是应该作为可用性测试的一部分？</h2><p>在交互系统中，永远都不能只评估视觉偏好，而不做可用性测试。如果时间和资源只支持做一个测试的话，那就在可用性测试中添加一些评估视觉测试影响的方法。</p>
+<p>在以下情况下，可以考虑使用文中介绍的独立方法：</p>
+<ul>
+<li>时间和资源允许做多种类型的测试</li>
+<li>视觉和品牌感知会很大程度上影响产品的成败</li>
+<li>在对交互原型进行测试之前，需要比较不同的视觉方法</li>
+<li>在对交互原型进行测试以后，需要用更大规模的用户样本来确认结果</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li>Lindgaard, G., Fernandes, G., Dudek, C. and Brown, J. “Attention Web Designers: You Have 50 Milliseconds to Make a Good First Impression!” Behavior and Information Technology, 25(2), 2006. <a href="https://www.tandfonline.com/doi/abs/10.1080/01449290500330448" target="_blank" rel="noopener">https://www.tandfonline.com/doi/abs/10.1080/01449290500330448</a></li>
+<li>Rohrer, Christian. “Desirability Studies: Measuring Aesthetic Response to Visual Designs.” xdStrategy.com, October 28, 2008. <a href="http://www.xdstrategy.com/2008/10/28/desirability_studies/" target="_blank" rel="noopener">http://www.xdstrategy.com/2008/10/28/desirability_studies/</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/26/5b31daa95ff2ba0583d04cd9/" rel="next" title="[UXRen译]优秀用户体验设计师的12个特质——我从从优秀设计师身上观察所得">
+                <i class="fa fa-chevron-left"></i> [UXRen译]优秀用户体验设计师的12个特质——我从从优秀设计师身上观察所得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何测试用户对视觉设计的感知"><span class="nav-number">1.</span> <span class="nav-text">如何测试用户对视觉设计的感知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉设计测试刺激物的呈现"><span class="nav-number">2.</span> <span class="nav-text">视觉设计测试刺激物的呈现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较多种设计"><span class="nav-number">2.1.</span> <span class="nav-text">比较多种设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估用户反应：开放式问题-vs-结构化问题"><span class="nav-number">3.</span> <span class="nav-text">评估用户反应：开放式问题 vs. 结构化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开放式偏好解释"><span class="nav-number">3.1.</span> <span class="nav-text">开放式偏好解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放式词汇选择"><span class="nav-number">3.2.</span> <span class="nav-text">开放式词汇选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构化词汇选择"><span class="nav-number">3.3.</span> <span class="nav-text">结构化词汇选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对品牌感知的数字评分"><span class="nav-number">4.</span> <span class="nav-text">对品牌感知的数字评分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在可用性测试中评估视觉设计"><span class="nav-number">5.</span> <span class="nav-text">在可用性测试中评估视觉设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视觉印象应该单独测试，还是应该作为可用性测试的一部分？"><span class="nav-number">6.</span> <span class="nav-text">视觉印象应该单独测试，还是应该作为可用性测试的一部分？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

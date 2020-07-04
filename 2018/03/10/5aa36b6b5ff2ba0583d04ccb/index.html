@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="此文章翻译自发表在 Nielsen Norman Group 的文章 Avoid Leading Questions to Get Better Insights from Participants， 原作者是Amy Schade。   摘要：在用户研究中，选用诱导性的话语会影响参与者的反馈或行为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[翻译]通过避免引导性提问来更好地了解参与者的想法">
+<meta property="og:url" content="http://peterwang1996.cn/2018/03/10/5aa36b6b5ff2ba0583d04ccb/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="此文章翻译自发表在 Nielsen Norman Group 的文章 Avoid Leading Questions to Get Better Insights from Participants， 原作者是Amy Schade。   摘要：在用户研究中，选用诱导性的话语会影响参与者的反馈或行为">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-11T06:03:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[翻译]通过避免引导性提问来更好地了解参与者的想法">
+<meta name="twitter:description" content="此文章翻译自发表在 Nielsen Norman Group 的文章 Avoid Leading Questions to Get Better Insights from Participants， 原作者是Amy Schade。   摘要：在用户研究中，选用诱导性的话语会影响参与者的反馈或行为">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2018/03/10/5aa36b6b5ff2ba0583d04ccb/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[翻译]通过避免引导性提问来更好地了解参与者的想法 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2018/03/10/5aa36b6b5ff2ba0583d04ccb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[翻译]通过避免引导性提问来更好地了解参与者的想法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-10 17:38:16" itemprop="dateCreated datePublished" datetime="2018-03-10T17:38:16+08:00">2018-03-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-11 14:03:04" itemprop="dateModified" datetime="2018-03-11T14:03:04+08:00">2018-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>此文章翻译自发表在 <a href="https://www.nngroup.com/" target="_blank" rel="noopener">Nielsen Norman Group</a> 的文章 <em><a href="https://www.nngroup.com/articles/leading-questions/" target="_blank" rel="noopener">Avoid Leading Questions to Get Better Insights from Participants</a></em>， 原作者是<a href="https://www.nngroup.com/articles/author/amy-schade/" target="_blank" rel="noopener">Amy Schade</a>。</p>
+</blockquote>
+<blockquote>
+<p>摘要：在用户研究中，选用诱导性的话语会影响参与者的反馈或行为</p>
+</blockquote>
+<a id="more"></a>
+<p>让我们先来做个简短的测试：在你的下一次用户研究中，选用针对下面这个问题的哪种措辞会帮助你获得更准确的结果？</p>
+<ul>
+<li>“我看你在导航栏那里遇到了麻烦，是怎么了？”</li>
+<li>“为什么你在导航栏那里遇到了麻烦？”</li>
+<li>“在你刚刚获取你需内容的过程中，你在哪里觉得比较轻松，又在哪里觉得麻烦呢？”</li>
+</ul>
+<p>第三个问题会帮助你获得更可靠的答案，可是原因是什么？因为前两个问题都是带有引导性的——也就是说，这些提问方式的措辞中，本身就<strong>包含或暗含（研究者）对他们的问题期待的答案</strong>。</p>
+<p>我们来看看上面的前两个提问方式会带来什么样的问题：</p>
+<blockquote>
+<p><em>提问方式一</em>：“我看你在导航栏那里遇到了麻烦，是怎么了？”<br><em>问题</em>：采访者所叙述的他所观察到的情况也许并不能准确地反映用户的体验。对采访者和观察者来说，也许回答者看起来像是在导航部分有些纠结，但也许她是在考虑哪些信息比较重要，或者她对任务产生了疑问，又或者是在探索页面的各个区域。这个提问方式还给“导航栏”这样一个用户界面元素命了名，也许用户并不（或并不完全）理解、接触到、或经常使用这个术语。</p>
+<p><em>提问方式二</em>：“为什么你在导航栏那里遇到了麻烦？”<br><em>问题</em>：同样地，这个提问方式暗含了问题的答案，并且假设问题的起因是导航栏。除此以外，相比于在网页上找问题，这个问题更像是在责难用户。它将问题聚焦于用户的行为与页面中的元素发生了对立，从而导致了问题的发生。</p>
+<p><em>提问方式三</em>：“在你刚刚获取你需内容的过程中，你在哪里觉得比较轻松，又在哪里觉得麻烦呢？”<br><em>改进之处</em>：这种提问方式带领用户聚焦到“浏览页面并找到内容”这个任务的主题上，同时没有给用户灌输术语和情绪。用户可以说他们在任务过程中比较轻松或者遇到了麻烦，而不需要表达他们的意见与采访者不同。采访者用这样的提问（为回答者）提供了一个对任务主题的一个一般性的框架，而没有暗含一个回答。</p>
+</blockquote>
+<p>很多用户研究都采用观察的手段——我们观察用户的行为，但是我们也会倾听用户告诉我们的事情，并且在很多情况下，我们都会让他们澄清他们告诉我们的事情。在任务结束后，我们会向用户提问。我们也许会让用户向我们反馈在某个时刻的更详细的信息。我们会以一个考察或确认一些用户基本信息的问题作为访谈的开头。</p>
+<p><strong>真实的，没有偏差的参与者反馈在用户研究中的作用是十分重要的。</strong> 在问问题时，我们会希望对用户的行为有更多的了解。这块内容是明确的吗？为什么界面上的这个元素导致了问题？引导性提问的问题在于它将我们想听到的答案带入了问题本身，这使得参与者很难，或者觉得不方便表达其他的想法。在可用性研究的互动的场景中，这一点体现得十分明显，因为采访者在那样的场景中往往是有如“权威”一般的存在，很多参与者都不愿意反驳他们的观点。</p>
+<p><strong>引导性提问会导致有偏差的或者错误的回答。</strong> 这是因为回答者回答者会倾向于简单地模仿采访者的用词。我们问出这些问题时所用的语言也许会影响用户的回答，并且可能会向他们提供一些关于界面的额外线索。最终我们可能会得到不准确的反馈，并且这些反馈可能会，也可能不会真正反映用户的体验、<a href="https://www.nngroup.com/articles/mental-models/" target="_blank" rel="noopener">心智模型</a>和思考过程。这样甚至可能会在接下来的会话中改变用户的行为。例如在某一次会话中，采访者使用了诸如“你觉得这个按钮的作用是什么？”这样缺乏经验的的措辞，从而使用户意识到她鼠标指向的实际是一个可以点击的链接。</p>
+<p>从本质上说，引导性提问<strong>剥夺了我们从用户那里听到我们没有想到的想法的可能性</strong>。我们的问题引导性越强，用户的回答就越难让我们惊讶或好奇，也越无法帮助我们从另外的方面思考问题。这样也许会对“<a href="https://www.nngroup.com/articles/no-validate-in-ux/" target="_blank" rel="noopener">验证性</a>”的设计有好处，但是对于测试性的设计绝对是不可取的。</p>
+<p>时刻记得，<strong>有时最好的问题就是不问问题</strong>，但是适当的<a href="https://www.nngroup.com/articles/talking-to-users/" target="_blank" rel="noopener">重定位</a>可以帮助用户延续他们的思考。如果我们确实想要问问题，想想我们可以怎样避免对用户进行引导。</p>
+<h2 id="什么样的提问方式具有引导性"><a href="#什么样的提问方式具有引导性" class="headerlink" title="什么样的提问方式具有引导性"></a>什么样的提问方式具有引导性</h2><p>在法庭剧中，律师经常会说：“异议！（他）在引导目击者！”你也许会诸如这样的场景中的“引导性提问”的概念比较熟悉。有很多种方式会让我们<a href="https://www.nngroup.com/articles/priming/" target="_blank" rel="noopener">诱导</a>用户，让他们只是简单地重复我们自己的想法，计划或假设。有些从业者可能是有意而为之，他们想要对自己的关于“什么样的设计是有/无效的”的假设进行验证。然而，我们大多数都是无意而为之。我们应该用<a href="https://www.nngroup.com/articles/open-ended-questions/" target="_blank" rel="noopener">开放式问题</a>（旨在引出用户解释的问题）来收集用户的想法，而非简单地让用户回答“是”或者“否”，或者从若干个选项中做选择。我们提问的方式对我们收到反馈的价值和有效程度其至关重要的作用。一下是一些应该尽量避免的陷阱：</p>
+<ul>
+<li><strong>不要用自己的语言转述参与者的话</strong><ul>
+<li><em>参与者</em>：“我注意到这张图片……”</li>
+<li><em>研究者</em>：“你说这张图片很有用，你喜欢它的哪个方面呢？”</li>
+<li><em>改进方案</em>：“你是说这张图片……？”</li>
+</ul>
+</li>
+<li><strong>问题中不要暗含答案</strong><ul>
+<li>“这个东西会多大程度上帮你在工作日中节省时间？”</li>
+<li><em>改进方案</em>：“如果有的话，这个东西怎样影响了你的效率？”</li>
+</ul>
+</li>
+<li><strong>不要给界面元素命名</strong><ul>
+<li>“页面旁边的这些相关链接会指向哪里？”</li>
+<li><em>改进方案</em>：“页面这边的这块区域[指向那片区域]……是干什么用的？”</li>
+</ul>
+</li>
+<li><strong>不要假设你了解用户的想法</strong><ul>
+<li>“你在完成这项任务的时候遇到了一些困难，是怎么啦？”</li>
+<li><em>改进方案</em>：“你觉得在完成这个任务的时候，哪些过程比较轻松，哪些比较麻烦呢？”</li>
+</ul>
+</li>
+</ul>
+<h2 id="熟能生巧……或者至少能帮你取得进步"><a href="#熟能生巧……或者至少能帮你取得进步" class="headerlink" title="熟能生巧……或者至少能帮你取得进步"></a>熟能生巧……或者至少能帮你取得进步</h2><p>在我们询问参与者的问题中，有些是我们提前准备好的——例如，我们可能会用一套标准化的问题作为我们每次会话的开始和结尾。这样的话，我们可以很容易地复查这些问题，并且对这些问题进行充分的修订，来使它们保持中立。</p>
+<p>在用户研究的匆忙过程中，提出和用户的反馈不冲突的问题显得相当困难。大家都会有在措辞上犯错误的时候，而且我们也很难提出完全中立的问题。然而，清醒地认识到这些问题是解决它们的一个好的开始。当自己或者你看到其他人提出引导性的问题的时候，你需要加倍小心，并且想想这样会如何影响用户的回答。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/01/5a9788ae5ff2ba0583d04cc1/" rel="next" title="前方高能 2.0 中期开发报告">
+                <i class="fa fa-chevron-left"></i> 前方高能 2.0 中期开发报告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/11/5aa4c1495ff2ba0583d04ccf/" rel="prev" title="[翻译]定量和定性可用性研究中的任务拟定">
+                [翻译]定量和定性可用性研究中的任务拟定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么样的提问方式具有引导性"><span class="nav-number">1.</span> <span class="nav-text">什么样的提问方式具有引导性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熟能生巧……或者至少能帮你取得进步"><span class="nav-number">2.</span> <span class="nav-text">熟能生巧……或者至少能帮你取得进步</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

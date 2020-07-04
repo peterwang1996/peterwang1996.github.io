@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Kano 问卷</title>
+    <link rel="stylesheet" href="https://unpkg.com/cube-ui/lib/cube.min.css">
+    <style>
+        #action-button {
+            position: fixed;
+            bottom: 0;
+            /* iOS 11.0 */
+            padding-bottom: calc(constant(safe-area-inset-bottom) + 17px);
+            /* iOS 11.2 */
+            padding-bottom: calc(env(safe-area-inset-bottom) + 17px);
+            z-index: 100;
+        }
+
+        .container {
+            padding: 48px 24px 96px 24px;
+        }
+
+        .inst p {
+            font-size: 18px;
+            line-height: 24px;
+            margin: 18px;
+        }
+
+        .inst p.new-part {
+            margin-top: 48px;
+            font-weight: bold;
+        }
+
+        .end p {
+            font-size: 18px;
+        }
+
+        .inst .copyright {
+            text-align: center;
+            position: absolute;
+            width: calc(100% - 48px);
+            bottom: 32px;
+            font-size: 16px;
+            color: #777;
+        }
+
+        .inst .icon {
+            display: block;
+            text-align: center;
+            font-size: 96px;
+            width: 100%;
+            margin: 36px auto;
+            color: #43d1a5;
+        }
+
+        .inst .logo {
+            height: 16px;
+        }
+
+        .test .item {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .test .image-container {
+            width: 100%;
+            height: 160px;
+            /* background: #ddd; */
+            margin: 32px auto 0 auto;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .test .item-description {
+            word-break: break-all;
+            margin: 12px auto;
+            color: #555;
+            line-height: 24px;
+            margin-bottom: 0;
+        }
+
+        .test .questions {
+            font-size: 16px;
+            padding: 36px 0 12px 0;
+        }
+
+        .test .questions .remark {
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .test .stars-container {
+            padding: 0 8px;
+        }
+
+        .test .notes {
+            padding-top: 8px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            line-height: 18px;
+        }
+
+        .test .notes>li {
+            width: 48px;
+            text-align: center;
+            color: #777;
+        }
+
+        .test .notes>li.active {
+            font-weight: bold;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container inst" v-if="status === -1">
+            <p>这是线上卡诺系统的一个Demo。</p>
+            <p>功能有所删减，题目已经脱敏，结果也不会上传。</p>
+            <p>模拟问卷只有5个问题，应该能在2分钟之内完成。</p>
+            <p class="new-part">请选择你常用的客户端</p>
+            <cube-radio-group :options="['Web', 'iOS', 'Android']" v-model="results[0]" />
+        </div>
+        <div class="container end" v-if="status === -2">
+            <p>问卷结束，感谢您的参与</p>
+        </div>
+        <div class="container test" v-if="status >= 0 && status < items.length">
+            <div class="progress">
+                <cube-button :inline="true" :light="true" icon="cubeic-back" :disabled="status < 0" @click="status--">
+                    &nbsp;&nbsp; {{ sections[currentSectionPosition].name }} &nbsp;&nbsp;
+                    {{ status - sections[currentSectionPosition].startsFrom + 1 }} /
+                    {{ sections[currentSectionPosition].count }}&nbsp;
+                </cube-button>
+            </div>
+            <h3 class="item">{{ items[status] }}</h3>
+            <h3 class="item-description">{{ description[status] }}</h3>
+            <p class="questions">如果你的 App <em class="remark">有</em> 这个功能，你会觉得</p>
+            <div class="stars-container">
+                <cube-rate v-model="results[status * 2 + 1]" :justify="true"></cube-rate>
+            </div>
+            <ul class="notes">
+                <li :class="{active: results[status * 2 + 1] === 1}">不喜欢</li>
+                <li :class="{active: results[status * 2 + 1] === 2}">勉强<br>接受</li>
+                <li :class="{active: results[status * 2 + 1] === 3}">无所谓</li>
+                <li :class="{active: results[status * 2 + 1] === 4}">理所<br>当然</li>
+                <li :class="{active: results[status * 2 + 1] === 5}">非常<br>喜欢</li>
+            </ul>
+            <p class="questions">如果你的 App <em class="remark">没有</em> 这个功能，你会觉得</p>
+            <div class="stars-container">
+                <cube-rate v-model="results[status * 2 + 2]" :justify="true"></cube-rate>
+            </div>
+            <ul class="notes">
+                <li :class="{active: results[status * 2 + 2] === 1}">不喜欢</li>
+                <li :class="{active: results[status * 2 + 2] === 2}">勉强<br>接受</li>
+                <li :class="{active: results[status * 2 + 2] === 3}">无所谓</li>
+                <li :class="{active: results[status * 2 + 2] === 4}">理所<br>当然</li>
+                <li :class="{active: results[status * 2 + 2] === 5}">非常<br>喜欢</li>
+            </ul>
+        </div>
+        <cube-button id="action-button" v-if="status >= -1" :primary="true" @click="goNext"
+            :disabled="status === -1 ? (results[0] === '') : ((results[status * 2 + 1] === 0) || (results[status * 2 + 2] === 0))">
+            {{ buttonText }}</cube-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/cube-ui/lib/cube.min.js"></script>
+    <script>
+        (() => {
+            let myApp = new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        status: -1,
+                        sections: [{
+                            name: '一键三连',
+                            startsFrom: 0,
+                            count: 3
+                        }, {
+                            name: '其他',
+                            startsFrom: 3,
+                            count: 2
+                        }],
+                        items: ['点赞', '投币', '收藏', '分享', '评论'],
+                        description: ['为视频点赞！', '给视频投币~', '点击收藏！', '把视频分享给朋友~', '和 UP 主激情对线！'],
+                        results: ['', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    }
+                },
+                methods: {
+                    goNext: function () {
+                        let that = this
+                        if (this.status === that.items.length - 1) {
+                            const toast = that.$createToast({
+                                time: 0,
+                                mask: true,
+                                txt: '结果上传中'
+                            })
+                            toast.show()
+                            setTimeout(() => {
+                                toast.hide()
+                                that.status = -2
+                            }, 1000)
+                        } else {
+                            that.status++
+                        }
+                        window.scrollTo(0, 0)
+                    }
+                },
+                computed: {
+                    buttonText() {
+                        switch (this.status) {
+                            case -1:
+                                return '开始'
+                                break
+                            case (this.items.length - 1):
+                                return '提交'
+                                break
+                            default:
+                                return '下一个'
+                                break
+                        }
+                    },
+                    currentSectionPosition() {
+                        for (let i = this.sections.length - 1; i >= 0; i--) {
+                            if (this.status >= this.sections[i].startsFrom) {
+                                return i
+                            }
+                        }
+                        return -1
+                    }
+                }
+            })
+        })()
+    </script>
+</body>
+
+</html>

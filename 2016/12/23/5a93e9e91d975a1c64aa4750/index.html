@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近由于见习和各种各样乱七八糟的事情，已经许久没有大段地写代码，也没有更新文章了。这次更新的这篇文章，是我在帮别人修改博客模板的时候，对面提出这样一个动画的需求，并且已经用 jQuery 实现了出来，但 jQuery 动画毕竟很坑，放出来的结果肯定想都不用想，必然是一卡一卡的。秉承我一贯能用大招杀的绝对不用 Q 杀能用 CSS 实现的效果绝不用 JavaScript 的理念，我尝试着用 CSS3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个纯 CSS 实现的导航条小动画">
+<meta property="og:url" content="http://peterwang1996.cn/2016/12/23/5a93e9e91d975a1c64aa4750/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="最近由于见习和各种各样乱七八糟的事情，已经许久没有大段地写代码，也没有更新文章了。这次更新的这篇文章，是我在帮别人修改博客模板的时候，对面提出这样一个动画的需求，并且已经用 jQuery 实现了出来，但 jQuery 动画毕竟很坑，放出来的结果肯定想都不用想，必然是一卡一卡的。秉承我一贯能用大招杀的绝对不用 Q 杀能用 CSS 实现的效果绝不用 JavaScript 的理念，我尝试着用 CSS3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-06T11:49:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个纯 CSS 实现的导航条小动画">
+<meta name="twitter:description" content="最近由于见习和各种各样乱七八糟的事情，已经许久没有大段地写代码，也没有更新文章了。这次更新的这篇文章，是我在帮别人修改博客模板的时候，对面提出这样一个动画的需求，并且已经用 jQuery 实现了出来，但 jQuery 动画毕竟很坑，放出来的结果肯定想都不用想，必然是一卡一卡的。秉承我一贯能用大招杀的绝对不用 Q 杀能用 CSS 实现的效果绝不用 JavaScript 的理念，我尝试着用 CSS3">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2016/12/23/5a93e9e91d975a1c64aa4750/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一个纯 CSS 实现的导航条小动画 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2016/12/23/5a93e9e91d975a1c64aa4750/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个纯 CSS 实现的导航条小动画
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-23 18:29:40" itemprop="dateCreated datePublished" datetime="2016-12-23T18:29:40+08:00">2016-12-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-06 19:49:06" itemprop="dateModified" datetime="2018-03-06T19:49:06+08:00">2018-03-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近由于见习和各种各样乱七八糟的事情，已经许久没有大段地写代码，也没有更新文章了。这次更新的这篇文章，是我在帮别人修改博客模板的时候，对面提出这样一个动画的需求，并且已经用 jQuery 实现了出来，但 jQuery 动画毕竟很坑，放出来的结果肯定想都不用想，必然是一卡一卡的。秉承我一贯<del>能用大招杀的绝对不用 Q 杀</del>能用 CSS 实现的效果绝不用 JavaScript 的理念，我尝试着用 CSS3 动画实现了这个效果，最终效果（和我觉得最优的解决方案）如下（鼠标放到字上面可以看到效果）：</p>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="MbRMdB" data-default-tab="css,result" data-user="peterwang1996" data-embed-version="2" data-pen-title="A simple navbar animation" class="codepen">See the Pen <a href="https://codepen.io/peterwang1996/pen/MbRMdB/" target="_blank" rel="noopener">A simple navbar animation</a> by peterwang (<a href="https://codepen.io/peterwang1996" target="_blank" rel="noopener">@peterwang1996</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<p>下面来说说我想到没试的，想到试了不成的和想到最终试成了的办法。</p>
+<a id="more"></a>
+<h2 id="动画拆解"><a href="#动画拆解" class="headerlink" title="动画拆解"></a>动画拆解</h2><p>首先这种动画拿到之后我们肯定可以做一个分析，实现这种动画大致的思路无非就有两种，一种是变换，一种是遮挡。所谓变换也就是直接更改物体（在这里是底下的小条）的属性，遮挡也就是用另一个和背景物相同的物体来对下面一层显示的东西进行遮挡，原理都十分简单，并且下面的方法中都有使用到。</p>
+<h2 id="JavaScript-实现"><a href="#JavaScript-实现" class="headerlink" title="JavaScript 实现"></a>JavaScript 实现</h2><p>这种动画，如果用 JavaScript 来实现的话，思路想必是十分简单的。最简单的办法是在下方初始化一个宽度为0的 <code>div</code> ，然后在 <code>mouseover</code> 和 <code>mouseout</code> 的时候对应着改 <code>position</code> 和 <code>width</code> 就行。还有就是弄两个 <code>div</code> ，一个用来呈现，一个用来遮挡，看起来也十分简单，此外，还有各种各样玲琅满目的动画库貌似也能实现这种效果，这里就不一一叙述了。</p>
+<h2 id="纯-CSS-实现"><a href="#纯-CSS-实现" class="headerlink" title="纯 CSS 实现"></a>纯 CSS 实现</h2><p>那么刚才也提到过，我的一贯思路是能用 CSS 实现的效果绝不用 JavaScript，而且在这里也确实出现了 JavaScript 动画的性能问题，那么现在我就来说一说我是如何用CSS解决的。</p>
+<h3 id="最基本的问题"><a href="#最基本的问题" class="headerlink" title="最基本的问题"></a>最基本的问题</h3><p>对于这个效果，首先有个最简单的问题要解决，那就是鼠标进入和离开的时候，效果是不同的，也不是直接简单粗暴地还原操作（这里说的还原操作是指的鼠标移出之后，动画刚好将移入时候的动画倒放一边），然而对于鼠标的进入和移出， CSS 貌似只提供了一个伪类，也就是 <code>:hover</code> 来对应这个事件，那鼠标移出的效果怎么做？于是我求助了万能的 <code>stackoverflow</code> 还真找到<a href="http://stackoverflow.com/questions/18493427/mouseover-and-mouseout-in-css" target="_blank" rel="noopener">一个问题</a>是问这个的，回答者给出了这样的解决方案：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element:not(:hover) &#123; ... &#125;</span><br></pre></td></tr></table></figure></p>
+<p>看了这个回答之后简直觉得大开眼界，原来 <code>:not</code> 选择器不仅可以用来选择元素，还可以用来选择伪元素，这样我们就可以用这种效果来模拟类似 <code>mouseout</code> 的效果了。</p>
+<h3 id="失败的尝试"><a href="#失败的尝试" class="headerlink" title="失败的尝试"></a>失败的尝试</h3><p>做 CSS 动画首先想到的肯定是 <code>transation</code> 属性，而且显然我们知道， <code>background</code> 是可以适用 <code>transition</code> 的，并且<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties" target="_blank" rel="noopener">MDN<br>的动画属性支持列表</a>也可以佐证我们的观点。于是刚开始我自然而然想到了这样的方案：</p>
+<blockquote>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span></span><br><span class="line">    矢泽日香</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"underline"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="selector-tag">position</span>: <span class="selector-tag">relative</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> <span class="selector-class">.underline</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(90deg, #000 0%, #000 0%, #6cf 0%, #6cf 0%, #000 0%, #000, 100%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.underline</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(90deg, #000 0%, #000 0%, #6cf 0%, #6cf 100%, #000 100%, #000 100%);</span><br><span class="line">  <span class="attribute">transition</span>: background .<span class="number">5s</span> ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span><span class="selector-pseudo">:not(</span><span class="selector-pseudo">:hover)</span> <span class="selector-class">.underline</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(90deg, #000 0%, #000 100%, #6cf 100%, #6cf 100%, #000 100%, #000 100%);</span><br><span class="line">  <span class="attribute">transition</span>: background .<span class="number">5s</span> ease-in-out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>很显然，这里我的意图是将下面 <code>div.underline</code> 这个小条通过渐变来分成三个部分，然后在动作触发时通过改变这三个部分的长度来实现对这个动画的模拟。一切看起来似乎都很美好。但是，当我信心满满地写完之后，试着鼠标放到链接上时，悲剧发生了，底下的条儿一点反应都没有。到处都检查不出问题，但是底下的条儿就是不动。后来经过<a href="http://stackoverflow.com/questions/6542212/use-css3-transitions-with-gradient-backgrounds" target="_blank" rel="noopener">更深入的了解</a>后发现，原来 <code>transition</code> 对于 <code>background</code> 的支持是不完全的，它并不支持带有渐变的背景，算是长见识了。于是对这种方法的尝试，只能在欢笑声中打出 GG 。</p>
+<h3 id="方法一的实现"><a href="#方法一的实现" class="headerlink" title="方法一的实现"></a>方法一的实现</h3><p>那么直接改变元素的方法看起来并不可行，那我们只能用另外的方法来实现了。</p>
+<p><em>(待续)</em></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/23/5a93e9e91d975a1c64aa474e/" rel="next" title="我看微信“小程序”">
+                <i class="fa fa-chevron-left"></i> 我看微信“小程序”
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/04/5a93e9e91d975a1c64aa4751/" rel="prev" title="对微信小程序的再度思考">
+                对微信小程序的再度思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动画拆解"><span class="nav-number">1.</span> <span class="nav-text">动画拆解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-实现"><span class="nav-number">2.</span> <span class="nav-text">JavaScript 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纯-CSS-实现"><span class="nav-number">3.</span> <span class="nav-text">纯 CSS 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最基本的问题"><span class="nav-number">3.1.</span> <span class="nav-text">最基本的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#失败的尝试"><span class="nav-number">3.2.</span> <span class="nav-text">失败的尝试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一的实现"><span class="nav-number">3.3.</span> <span class="nav-text">方法一的实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

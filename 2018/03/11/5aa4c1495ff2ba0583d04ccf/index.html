@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="此文章翻译自发表在 Nielsen Norman Group 的文章 Writing Tasks for Quantitative and Qualitative Usability Studies， 原作者是Kate Meyer。   摘要：所有的可用性研究都涉及到要求参与者完成任务，但是拟定这些任务的正确方法取决于你使用的研究方法。好的定量任务应该是具体且焦点明确的，而好的定性任务则是开放，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[翻译]定量和定性可用性研究中的任务拟定">
+<meta property="og:url" content="http://peterwang1996.cn/2018/03/11/5aa4c1495ff2ba0583d04ccf/index.html">
+<meta property="og:site_name" content="Peter Wang&#39;s Blog">
+<meta property="og:description" content="此文章翻译自发表在 Nielsen Norman Group 的文章 Writing Tasks for Quantitative and Qualitative Usability Studies， 原作者是Kate Meyer。   摘要：所有的可用性研究都涉及到要求参与者完成任务，但是拟定这些任务的正确方法取决于你使用的研究方法。好的定量任务应该是具体且焦点明确的，而好的定性任务则是开放，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-12T06:52:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[翻译]定量和定性可用性研究中的任务拟定">
+<meta name="twitter:description" content="此文章翻译自发表在 Nielsen Norman Group 的文章 Writing Tasks for Quantitative and Qualitative Usability Studies， 原作者是Kate Meyer。   摘要：所有的可用性研究都涉及到要求参与者完成任务，但是拟定这些任务的正确方法取决于你使用的研究方法。好的定量任务应该是具体且焦点明确的，而好的定性任务则是开放，">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterwang1996.cn/2018/03/11/5aa4c1495ff2ba0583d04ccf/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[翻译]定量和定性可用性研究中的任务拟定 | Peter Wang's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?912f73a8fbeb3e75e1053d2f29a9c706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Peter Wang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">22歳、学生です。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterwang1996.cn/2018/03/11/5aa4c1495ff2ba0583d04ccf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter Wang">
+      <meta itemprop="description" content="22歳、学生です。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Peter Wang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[翻译]定量和定性可用性研究中的任务拟定
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-11 23:58:35" itemprop="dateCreated datePublished" datetime="2018-03-11T23:58:35+08:00">2018-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-12 14:52:49" itemprop="dateModified" datetime="2018-03-12T14:52:49+08:00">2018-03-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>此文章翻译自发表在 <a href="https://www.nngroup.com/" target="_blank" rel="noopener">Nielsen Norman Group</a> 的文章 <a href="https://www.nngroup.com/articles/test-tasks-quant-qualitative/" target="_blank" rel="noopener">Writing Tasks for Quantitative and Qualitative Usability Studies</a>， 原作者是<a href="https://www.nngroup.com/articles/author/kate-meyer/" target="_blank" rel="noopener">Kate Meyer</a>。</p>
+</blockquote>
+<blockquote>
+<p>摘要：所有的可用性研究都涉及到要求参与者完成任务，但是拟定这些任务的正确方法取决于你使用的研究方法。好的定量任务应该是具体且焦点明确的，而好的定性任务则是开放，灵活，且富有探索性的。</p>
+</blockquote>
+<a id="more"></a>
+<p>对于任何一种可用性测试来说，都需要一系列经过精心设计的任务来获得成功。无论使用哪一种具体的研究方法，你的任务中总是应该有一些共同的特性。然而，要具体地评判一个方法的优劣，则需要考虑可用性研究是定量的还是定性的。</p>
+<h2 id="背景知识：定量研究-vs-定性研究"><a href="#背景知识：定量研究-vs-定性研究" class="headerlink" title="背景知识：定量研究 vs. 定性研究"></a>背景知识：定量研究 vs. 定性研究</h2><p><a href="https://www.nngroup.com/articles/quant-vs-qual/" target="_blank" rel="noopener">定量和定性的可用性测试存在很多不同</a>。它们对应着不同的研究目标。</p>
+<p><strong>定量研究</strong>与科学实验十分类似，它通过严格的可操纵环境来实现对某些指标的捕获。（如完成任务的成功与否或用时）</p>
+<p>相对应地，<strong>定性研究</strong>可用来发现用户界面中的问题。定性研究旨在通过对单个用户进行实验的过程中，了解参与者在其过程中的思维和遇到的困难。这种研究方法通常给用户呈现一个开放式的活动，通过这样的方式，就可能可以发现用户界面中存在的问题。</p>
+<p>大致总结一下，定量研究获取的是数据，定性研究获取的是想法。</p>
+<p>鉴于这两种方法在目标和特点上有很大的差异，你需要针对不同的方法撰写不同的任务。在很多情况下，<strong>一个适用于定性研究的方法可能完全无法用在定性研究上</strong>，反之亦然。</p>
+<h2 id="无论为哪一种方法制定任务时……"><a href="#无论为哪一种方法制定任务时……" class="headerlink" title="无论为哪一种方法制定任务时……"></a>无论为哪一种方法制定任务时……</h2><ul>
+<li><strong>考察<a href="https://www.nngroup.com/articles/task-scenarios-usability-testing/SW" target="_blank" rel="noopener">用户需要用产品做什么</a>，以此来获得灵感。</strong> 要牢记，任务要尽可能地贴近实际。你不能让参与者去做一些在他们生活中根本不会做的，或者你可以预知到与项目无关的事情。可以用用户访谈，搜索日志的数据，客服热线和分析数据来确定用户使用你的产品做什么。</li>
+<li><strong>不要唐突地在任务中提供线索</strong>。不要向用户描述它们具体需要采取的步骤——让他们自己去发现。不要提到用户界面中用到的文字标签。你是不会希望用具体的文字来引导用户的。<blockquote>
+<p>不要这样：注册 Alertbox。<br>改进方案：注册这个网站的通讯。</p>
+</blockquote>
+</li>
+<li><strong>尽量让任务保持<a href="https://www.nngroup.com/articles/better-usability-tasks/" target="_blank" rel="noopener">情感中立</a></strong>。在拟定任务的时候，不要对用户的私人生活或人际关系进行假设。如果可以的话，在任务中最好是使用“朋友”这样的人物，不要使用诸如“父亲”或“配偶”或者其他的家庭成员。<blockquote>
+<p>不要这样：给你的母亲挑选一件生日礼物。<br>改进方案：给你的朋友挑选一件生日礼物。</p>
+</blockquote>
+</li>
+<li><strong>对任务进行<a href="https://www.nngroup.com/articles/pilot-testing/" target="_blank" rel="noopener">预测试</a></strong>。这一步十分重要，但是很多研究者都跳过了它。你也许觉得你的任务没有问题，但是在你没有在一两个用户身上实施过的话，你就不能确保这一点。在研究预算表和时间表中一定要为预测试留下空间。这样会让你避免在不小心使用了不当的任务而浪费研究资源，也能避免你拿到不理想的数据。</li>
+</ul>
+<h2 id="为定性研究拟定任务时……"><a href="#为定性研究拟定任务时……" class="headerlink" title="为定性研究拟定任务时……"></a>为定性研究拟定任务时……</h2><ul>
+<li><strong>可以使用开放式的任务</strong>。对于定性研究，可以让（参与者）对任务的解读不唯一。即便有些时候需要给用户确定明确的指标，你也可以保持任务的开放性，来考察用户真正关心的是什么，以及什么样的因素会影响他们做出决定。<blockquote>
+<p>开放式定性任务：开一张你需要的信用卡。<br>具体的定性任务：开一张“刷卡返现”信用卡。</p>
+</blockquote>
+</li>
+<li><strong>为你设定的场景提供足够的细节，但不要过多</strong>。确保为参与者建立完成任务的动机是很重要的，但也没必要为此长篇大论。如果已经确保参与者可以代表实际用户，并且这个任务对他来说是实际的，那就不需要提供太多的背景信息了。</li>
+<li><strong>如果没有得到想要的想法，那就换一个任务</strong>。在定性研究中，中途改变任务指导语，或者甚至临时添加新的任务，都是没有问题的。定性研究的目的就是得到有用的观测，所以你并不需要让每个参与者都去完成一样的任务。（事实上，重复无用的任务会浪费<a href="https://www.nngroup.com/articles/time-budgets-for-usability-sessions/" target="_blank" rel="noopener">参与者宝贵的时间</a>）</li>
+</ul>
+<h2 id="为定量研究拟定任务时……"><a href="#为定量研究拟定任务时……" class="headerlink" title="为定量研究拟定任务时……"></a>为定量研究拟定任务时……</h2><ul>
+<li><strong>确保完成任务的路径只有一条</strong>。与定性任务不同，定量任务必须有唯一的解读和解决方案，这个是必须要明确的。<br>如果指导语太过与宽泛或开放，每个参与者都可能会执行本质上不同的任务，并且在界面中产生不同的路径。这样，你收集到的将会是对不同事物的度量，并且数据之间会产生很大的出入。那么，当解决方案不止一种的时候，你应该把那个算作是“成功的”呢？<blockquote>
+<p>不要这样：开一张你需要的信用卡。<br>改进方案：开一张“刷卡返现”信用卡。</p>
+</blockquote>
+</li>
+<li><strong>不遗余力地提供必要的细节，确保任务是准确且焦点明晰的</strong>。有些时候，这样意味着在定性研究中，提供的细节应该留有余量。<br>你通常会觉得你已经提供了足够的细节，但是在接下来的预测试中，你会发现你遗漏了一些东西。例如，只告诉用户在什么时候预订哪家酒店是不够的——你也需要告诉他们预订哪种房间。在定性研究中，这种说明往往不太必要，但是在定量研究中，确保每个用户完成的是一样的任务则显得十分有必要。<blockquote>
+<p>不要这样：“在芝加哥的 Hyatt Regency 酒店预定一间两人房，从一月十七号住到一月十九号。”<br>改进方案：在芝加哥的 Hyatt Regency 酒店预定一间两人的大床房，从一月十七号住到一月十九号。”</p>
+</blockquote>
+</li>
+<li><strong>提供模拟凭证（假数据）用于注册</strong>，登陆和其他需要输入个人信息的任务。让每个人都输入相同的信息，就可以使差异最小化。所有的参与者都输入相同的字符。此外，在需要自己个人信息的时候，一些人会比其他人更犹豫。得出一个可以接受的解决方案也需要花费额外的时间。（对于许多定性研究来说，你也许就要让参与者<a href="https://www.nngroup.com/articles/users-real-data/" target="_blank" rel="noopener">使用他们的真实信息</a>）</li>
+<li><strong>每个任务都应该是独立的</strong>。最理想的情况是，你可以将定量研究中的任务顺序随机化。如果有两个任务相互关联，这两个任务就必须得以相同的顺序执行。此外，对在第一个任务中失败的人，也无法继续进行第二个关联的任务。<blockquote>
+<p>不要这样：</p>
+<ul>
+<li>任务一：找到 Joe Smith 的个人档案。</li>
+<li>任务二：在 Joe Smith 的档案页里在找到他的直系上级。</li>
+</ul>
+<p>改进方案：</p>
+<ul>
+<li>任务一：找到 Joe Smith 的个人档案。</li>
+<li>任务二：在这个链接指向的页面里，找到 Jim Grant 的直系上级。</li>
+</ul>
+</blockquote>
+</li>
+<li><strong>每个任务应该有一个单一的成功指标</strong>。不要把两个任务合并成一个。在定量研究中，需要一个简单且清晰的结束点，来帮助你记录用户在任务上花费的时间，以及用户是否成功完成了任务。如果在单个任务中定义了多个成功的标志，那么在用户找到了其中的一条信息，但是没有找着其他的，这样该怎么算呢？可以把复合的任务进行拆分，这样问题就能得到很好的解决。<blockquote>
+<p>不要这样：找到博物馆的地址和放假时间。</p>
+<p>改进方案：</p>
+<ul>
+<li>任务一：找到博物馆的地址。</li>
+<li>任务二：找到博物馆的放假时间。</li>
+</ul>
+</blockquote>
+</li>
+<li><strong>一旦开始了研究，就不要改变任务了</strong>。在定量研究中，确保每个参与者所执行的任务是相同的，这一点非常重要。在这样的研究中，应该始终控制好除自变量（例如，你的产品 vs 你的竞品）以外所有的条件。也就是说，你不应该在研究的中途想到去改变你任务的指导语。这样会污染你的最终结果。预测试对任何研究都很重要，但是对定量研究来说显得尤为重要，因为你并不能在研究中途对研究方案进行改变。</li>
+<li><strong>把重点放在主要任务上</strong>。定量研究成本非常高，所以用它来做一些对你的用户和组织来说优先级不高的测试的话，就显得并不是很划算。尽管定性研究的灵活性使得它可以被用测试一些不太常用的事项，但定量研究必须将重心放在最重要的核心任务上。</li>
+</ul>
+<h2 id="总结：定性任务-vs-定量任务"><a href="#总结：定性任务-vs-定量任务" class="headerlink" title="总结：定性任务 vs. 定量任务"></a>总结：定性任务 vs. 定量任务</h2><table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>定性任务</th>
+<th>定量任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务性质</td>
+<td>开放，灵活，有探索性</td>
+<td>具体，焦点明确</td>
+</tr>
+<tr>
+<td>指导语措辞<br>中的细节多少</td>
+<td>提供必要的细节<br>以建立动机</td>
+<td>提供必要的细节<br>确保任务成功的路径<br>是唯一的</td>
+</tr>
+<tr>
+<td>任务顺序的随机化</td>
+<td>有则更优<br>但非必需</td>
+<td>必需</td>
+</tr>
+<tr>
+<td>在研究中途改变任务</td>
+<td>✓</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>基于用户研究的<br>切合实际的实际任务</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>指导语中不包含线索</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>情感中立的任务</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>提供假数据</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>对任务进行预测试</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>不管你准备施行哪种研究，拟定优质的任务都需要通过练习来掌握。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>赏我点钱让我去看 7777777 吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft16fz9syoj20yi1bcn10.jpg" alt="Peter Wang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://ww1.sinaimg.cn/large/4b945ffegy1ft167mi9aqj20go0p0t9j.jpg" alt="Peter Wang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="https://ws1.sinaimg.cn/large/4b945ffegy1ft2jmpsb7oj20dw0i2t8u.jpg" alt="Peter Wang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/10/5aa36b6b5ff2ba0583d04ccb/" rel="next" title="[翻译]通过避免引导性提问来更好地了解参与者的想法">
+                <i class="fa fa-chevron-left"></i> [翻译]通过避免引导性提问来更好地了解参与者的想法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/03/5ac2eb165ff2ba0583d04cd6/" rel="prev" title="一次用研笔试的作答：大学生兼职 APP 的用户招募条件 & 用户招募公告">
+                一次用研笔试的作答：大学生兼职 APP 的用户招募条件 & 用户招募公告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Peter Wang</p>
+              <p class="site-description motion-element" itemprop="description">22歳、学生です。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterwang1996" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="peterwang1996@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://peterwang1996.github.io/Resume/" target="_blank" title="Resume"><i class="fa fa-fw fa-file"></i>Resume</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/steambread/" target="_blank" title="Weibo"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景知识：定量研究-vs-定性研究"><span class="nav-number">1.</span> <span class="nav-text">背景知识：定量研究 vs. 定性研究</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无论为哪一种方法制定任务时……"><span class="nav-number">2.</span> <span class="nav-text">无论为哪一种方法制定任务时……</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为定性研究拟定任务时……"><span class="nav-number">3.</span> <span class="nav-text">为定性研究拟定任务时……</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为定量研究拟定任务时……"><span class="nav-number">4.</span> <span class="nav-text">为定量研究拟定任务时……</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结：定性任务-vs-定量任务"><span class="nav-number">5.</span> <span class="nav-text">总结：定性任务 vs. 定量任务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
